@@ -1,0 +1,128 @@
+---
+title: "raw_to_clean_data_code"
+---
+
+## Researcher burnout and questionable research practice pilot data cleaning
+
+### Raw to clean data
+
+#Installing packages
+
+```{r echo=FALSE}
+library(tidyverse)
+library(here)
+data_path <- here("data")
+```
+
+#Importing data
+
+```{r}
+raw_data = read.csv(here::here("data/march_28.csv"))
+names(raw_data)
+```
+
+#Filtering out irrelevant data for analysis
+
+```{r}
+raw_data_filtered = raw_data |> 
+  select(-StartDate, 
+         -EndDate,
+         -Status,
+         -Duration..in.seconds.,
+         -Progress,
+         -RecordedDate,
+         -ResponseId,
+         -UserLanguage,
+         -DistributionChannel)
+
+meta_data = raw_data |> 
+  select(StartDate, 
+         EndDate,
+         Status,
+         Duration..in.seconds.,
+         Progress,
+         RecordedDate,
+         ResponseId,
+         UserLanguage,
+         DistributionChannel)
+```
+
+#Creating codebook
+
+```{r}
+raw_data_filtered_codebook = raw_data_filtered[1, , drop = FALSE]
+```
+
+#Unifying syntax
+
+```{r}
+raw_data_filtered = raw_data_filtered |> 
+  rename_with(tolower) |> 
+  slice(-c(1, 2))
+  
+```
+
+#Checking for invalid data
+
+```{r}
+participant_data = raw_data_filtered |> 
+  summarize(n_all = n(),
+            n_finished = sum(finished == "True"),
+            n_consent = sum(consent == "Yes"),
+            n_academic = sum(academic_yes_no == "Yes"),
+            n_research = sum(research_yes_no == "Yes"))
+
+```
+
+#Descriptives
+
+```{r}
+descriptive_data_title = raw_data_filtered |> 
+  count(title)
+
+descriptive_data_gender = raw_data_filtered|> 
+  count(gender)
+
+descriptive_data_discipline = raw_data_filtered |> 
+  count(discipline)
+
+descriptive_data_last_published = raw_data_filtered |> 
+  count(last_published)
+
+descriptive_data_academia_length = raw_data_filtered |> 
+  count(academia_length)
+```
+
+#Creation of anonym id and dropping unnecessary columns
+
+```{r}
+raw_data_filtered = raw_data_filtered |> 
+  mutate(anonym_id = row_number()) |> 
+  select(-finished, -consent, -academic_yes_no, -research_yes_no)
+```
+
+#Locate attention check questions
+```{r}
+
+attention_check = raw_data_filtered |> 
+  select(copsoq_workload_5, attention_2, anonym_id)
+
+#For copsoq_wokload_5, "Rarely" is the correct answer
+#For attention_2, "Strongly agree" is the correct answer
+
+attention_check = attention_check |> 
+  mutate(copsoq_workload_5 = if_else(copsoq_workload_5 == "Rarely", 1, 0),
+         attention_2 = if_else(attention_2 == "Strongly agree", 1, 0)) |> 
+  mutate(attention = ifelse(copsoq_workload_5 == 0 & attention_2 == 0, "Failed", "Passed")) |> 
+  select(attention, anonym_id)
+
+raw_data_filtered_valid = raw_data_filtered |> 
+  left_join(attention_check, by = "anonym_id")
+```
+
+#Saving data
+
+```{r}
+write.csv(raw_data_filtered_valid, here::here("data/raw_to_clean_data.csv"), row.names = FALSE)
+write.csv(raw_data_filtered_codebook, here::here("data/codebook.csv"), row.names = FALSE)
+```

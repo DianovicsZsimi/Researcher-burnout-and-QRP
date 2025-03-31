@@ -1,0 +1,22 @@
+---
+title: "aggregation"
+author: "Dominik Dianovics"
+format: html
+---
+
+## Researcher burnout and questionable research practice pilot data cleaning
+
+### Processed to aggregated data
+
+
+#Filtering out invalid data
+```{r}
+data = data |> 
+  filter(finished == "True" 
+         & consent == "Yes" 
+         & academic_yes_no == "Yes"
+         & research_yes_no == "Yes"
+         & last_published != "More than 10 years ago or Never"
+         & attention_check == "Failed")
+```
+
