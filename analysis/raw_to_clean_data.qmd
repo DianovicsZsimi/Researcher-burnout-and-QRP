@@ -74,25 +74,6 @@ participant_data = raw_data_filtered |>
 
 ```
 
-#Descriptives
-
-```{r}
-descriptive_data_title = raw_data_filtered |> 
-  count(title)
-
-descriptive_data_gender = raw_data_filtered|> 
-  count(gender)
-
-descriptive_data_discipline = raw_data_filtered |> 
-  count(discipline)
-
-descriptive_data_last_published = raw_data_filtered |> 
-  count(last_published)
-
-descriptive_data_academia_length = raw_data_filtered |> 
-  count(academia_length)
-```
-
 #Creation of anonym id and dropping unnecessary columns
 
 ```{r}

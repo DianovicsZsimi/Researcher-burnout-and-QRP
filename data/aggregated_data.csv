@@ -1,0 +1,25 @@
+anonym_id,gender,title,discipline,last_published,academia_length,phd_dissertation,finished,research_yes_no,academic_yes_no,consent,attention,lazy_responding,burnout,influence,meaning,opportunities,social_support,workload,general_satisfaction,open_practice,pay_satisfaction,pub_pressure_attitude,pub_pressure_resource,pub_pressure_stress,qrp_attitude,role_ambiguity,role_conflict,tool_satisfaction
+1,Non-binary / third gender,Post Doc,"STEM (science, technology, engineering, mathematics)",This year,1-5 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,20,12,2,5,6,12,2,1,14,26,22,26,9,36,24,8
+2,Man,Assistant Professor,Non-STEM,This year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,10,22,5,12,15,19,4,1,4,22,18,20,12,24,34,7
+3,Man,Full Professor,Non-STEM,This year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,14,27,8,14,24,13,11,1,4,21,22,15,9,19,28,8
+5,Woman,PhD student,"STEM (science, technology, engineering, mathematics)",This year,1-5 years,3-4 articles,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,13,17,6,12,15,14,4,1,10,27,18,20,8,19,26,5
+6,Woman,Associate Professor,Non-STEM,This year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,10,20,10,14,16,13,9,1,8,23,20,21,11,22,25,12
+7,Man,Assistant Professor,Non-STEM,This year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,12,20,8,10,22,16,11,1,4,23,20,22,13,22,27,6
+8,Man,Full Professor,Non-STEM,In the last year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,8,21,7,15,24,12,12,1,12,24,21,16,9,26,29,12
+9,Man,Full Professor,Non-STEM,This year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,10,21,6,12,19,16,10,1,13,20,22,17,16,22,21,11
+10,Woman,Post Doc,Non-STEM,This year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,12,21,8,10,21,9,10,1,8,28,22,22,18,21,37,7
+11,Woman,Assistant Professor,Non-STEM,This year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,12,22,8,11,13,12,10,1,4,23,20,21,10,22,25,4
+12,Woman,Post Doc,"STEM (science, technology, engineering, mathematics)",This year,6-10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,10,17,8,14,20,19,12,1,10,27,22,18,13,23,29,10
+13,Woman,Full Professor,Non-STEM,In the last year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,7,25,9,15,22,10,10,1,14,14,19,18,9,21,26,8
+14,Woman,Post Doc,Non-STEM,In the last year,6-10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,9,25,5,12,25,9,8,1,10,26,20,17,12,22,35,12
+16,Woman,Assistant Professor,Non-STEM,In the last year,6-10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,15,17,7,11,23,20,7,1,4,23,23,23,15,20,25,3
+17,Woman,PhD student,Non-STEM,This year,1-5 years,3-4 articles,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,13,16,6,12,23,12,8,1,10,22,20,21,9,21,25,9
+18,Woman,PhD student,Non-STEM,This year,1-5 years,1-2 articles,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,12,23,8,12,26,13,10,1,6,21,24,15,11,25,24,9
+19,Man,PhD student,Non-STEM,In the last 5 years,1-5 years,3-4 articles,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,17,24,7,9,17,13,7,1,12,18,21,26,28,13,10,9
+20,Woman,This does not apply to me,"STEM (science, technology, engineering, mathematics)",In the last 5 years,Less than 1 year,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,20,8,2,5,8,16,2,1,8,27,18,22,9,25,20,4
+22,Woman,Full Professor,"STEM (science, technology, engineering, mathematics)",This year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,13,22,8,8,11,14,12,1,4,23,18,23,9,25,21,6
+23,Man,Post Doc,Non-STEM,In the last year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,14,23,6,13,20,16,6,1,11,23,20,23,14,30,22,5
+24,Man,Full Professor,"STEM (science, technology, engineering, mathematics)",This year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,4,30,7,12,29,8,6,0,2,13,21,15,9,20,30,10
+25,Woman,PhD student,Non-STEM,This year,1-5 years,3-4 articles,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,8,24,8,12,19,9,10,1,12,21,20,16,15,28,29,12
+26,Woman,Post Doc,Non-STEM,This year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,10,22,9,14,22,14,7,1,7,19,20,20,20,27,25,9
+28,Woman,Associate Professor,"STEM (science, technology, engineering, mathematics)",This year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,13,22,8,8,10,10,11,0,10,23,19,17,17,29,29,9

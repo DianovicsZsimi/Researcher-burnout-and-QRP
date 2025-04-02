@@ -9,6 +9,7 @@ format: html
 ### Processed to aggregated data
 
 #Loading packages
+
 ```{r}
 library(tidyverse)
 library(here)
@@ -16,11 +17,13 @@ data_path <- here("data")
 ```
 
 #Loading data
+
 ```{r}
 processed = read_csv(here::here("data/processed_data.csv"))
 ```
 
 #Filtering out invalid data
+
 ```{r}
 processed_filtered = processed |> 
   filter(finished == T 
@@ -33,6 +36,7 @@ processed_filtered = processed |>
 ```
 
 #Aggregating data
+
 ```{r}
 surveys = c("bat", "ppqr_stress", "ppqr_attitude", "ppqr_resource", "copsoq_workload", "copsoq_soc_sup", "copsoq_oppor",
             "qrp_attitude", "copsoq_infl", "copsoq_meaning", "role_ambiguity", "role_conflict",
@@ -58,6 +62,7 @@ aggregated_data <- reduce(aggregated_datasets, left_join, by = "anonym_id")
 ```
 
 #Checking for error while aggregating
+
 ```{r}
 bat_aggregated_manual = processed_filtered |>
   group_by(anonym_id) |>
@@ -73,6 +78,7 @@ all(role_ambiguity_aggregated$role_ambiguity_total == role_ambiguity_aggregated_
 ```
 
 #Joining aggregate data with descriptives
+
 ```{r}
 aggregated_data = processed_filtered |> 
   select(anonym_id, gender:lazy_responding) |> 
@@ -80,7 +86,29 @@ aggregated_data = processed_filtered |>
 ```
 
 #Rename columns
-```{r}
 
+```{r}
+aggregated_data_final = aggregated_data |> 
+  rename(burnout = bat_total,
+         pub_pressure_stress = ppqr_stress_total,
+         pub_pressure_attitude = ppqr_attitude_total,
+         pub_pressure_resource = ppqr_resource_total,
+         workload = copsoq_workload_total,
+         social_support = copsoq_soc_sup_total,
+         opportunities = copsoq_oppor_total,
+         qrp_attitude = qrp_attitude_total,
+         influence = copsoq_infl_total,
+         meaning = copsoq_meaning_total,
+         role_ambiguity = role_ambiguity_total,
+         role_conflict = role_conflict_total,
+         pay_satisfaction = pay_satisfaction_total,
+         tool_satisfaction = tool_satisfaction_total,
+         general_satisfaction = general_satisfaction_total,
+         open_practice = open_practice_total)
 ```
 
+#Save data
+
+```{r}
+write_csv(aggregated_data_final, here::here("data/aggregated_data.csv"))
+```

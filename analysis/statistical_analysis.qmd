@@ -1,0 +1,33 @@
+---
+title: "statistical_analysis"
+author: "Dominik Dianovics"
+format: html
+---
+
+# Researcher burnout and questionable research practice pilot data analysis
+
+## Statistical analysis
+
+### Load libraries
+
+```{r echo = FALSE ouput = FALSE}
+library(tidyverse)
+library(here)
+library(ggplot2)
+data_path <- here("data")
+```
+
+### Load data
+
+```{r echo = FALSE ouput = FALSE}
+data = read_csv(here::here("data/aggregated_data.csv"))
+```
+
+# Latent variables as imagined by the Job Demands-Resources Model of Burnout
+
+## Job demands as latent variable
+```{r}
+#Job demands are: 
+
+```
+

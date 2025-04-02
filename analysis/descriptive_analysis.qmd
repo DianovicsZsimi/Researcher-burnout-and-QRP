@@ -1,0 +1,181 @@
+---
+title: "clean_to_processed_data_code"
+format: html
+---
+
+# Researcher burnout and questionable research practice pilot data analysis
+
+## Descriptive analysis
+
+### Load libraries
+
+```{r echo = FALSE ouput = FALSE}
+library(tidyverse)
+library(here)
+library(ggplot2)
+data_path <- here("data")
+```
+
+### Load data
+
+```{r echo = FALSE ouput = FALSE}
+data = read_csv(here::here("data/aggregated_data.csv"))
+```
+
+# General participant statistics
+
+## Number of participants
+
+```{r}
+n = data |> 
+  summarise(n = n())
+```
+
+## Gender
+
+```{r}
+gender = data |> 
+  group_by(gender) |> 
+  summarise(n = n())
+```
+
+## Title
+
+```{r}
+title = data |> 
+  group_by(title) |> 
+  summarise(n = n())
+```
+
+## Discipline
+
+```{r}
+discipline = data |> 
+  group_by(discipline) |> 
+  summarise(n = n())
+```
+
+## Most recent article published
+
+```{r}
+last_published = data |> 
+  group_by(last_published) |> 
+  summarise(n = n())
+```
+
+## Academic career length
+
+```{r}
+academia_length = data |> 
+  group_by(academia_length) |> 
+  summarise(n = n())
+```
+
+## PhD
+
+```{r}
+phd = data |> 
+  filter(title == "PhD student") |> 
+  group_by(phd_dissertation) |> 
+  summarise(n = n())
+```
+
+# Survey statistics
+
+## Distribution
+```{r}
+library(rlang)
+
+survey = c("burnout", "influence", "meaning", "opportunities", "social_support", "workload",
+           "general_satisfaction", "open_practice", "pay_satisfaction", "tool_satisfaction",
+           "qrp_attitude", "role_conflict", "role_ambiguity", "pub_pressure_stress",
+           "pub_pressure_attitude", "pub_pressure_resource")
+
+
+distribution = function(data, survey){
+  var = sym(survey)
+  
+  data |>
+  ggplot(aes(x = !!var)) +
+  geom_bar()
+
+  ggsave(paste0("figures/", survey, "_distribution.png"))
+}
+
+for (i in survey){
+  assign(paste0(i, "_distribution"), distribution(data, i))
+}
+
+#Introduce range based on survey min and max
+```
+
+## Deeper look at QRP attitude scale
+### As other scales are validated and reliable, we will focus on QRP attitude scale
+```{r}
+processed = read_csv(here::here("data/processed_data.csv"))
+qrp_data = processed |> 
+  select(anonym_id, qrp_attitude_1:qrp_attitude_8) |> 
+  left_join(select(data, anonym_id, qrp_attitude), by = "anonym_id")
+
+#Distribution for each question
+
+qrp_questions = c("qrp_attitude_1", "qrp_attitude_2", "qrp_attitude_3", "qrp_attitude_4",
+                  "qrp_attitude_5", "qrp_attitude_6", "qrp_attitude_7", "qrp_attitude_8")
+
+qrp_distribution_function = function(data, question){
+  var = sym(question)
+  
+  data |>
+  ggplot(aes(x = !!var)) +
+  geom_bar() +
+  coord_cartesian(xlim = c(1, 5))
+  
+  ggsave(paste0("figures/qrp/", question, "_distribution.png"))
+}
+
+for (i in qrp_questions){
+  assign(paste0(i, "_distribution"), qrp_distribution_function(qrp_data, i))
+}
+
+#Correlation between questions
+
+correlation = qrp_data |> 
+  select(qrp_attitude_1:qrp_attitude_8) |> 
+  cor(use = "complete.obs")
+
+#Check floor effects
+## Floor effects are present when more than 30% of the participants score the lowest possible score (researcher decision)
+floor_effects = qrp_data |> 
+  select(qrp_attitude_1:qrp_attitude_8) |> 
+  summarise_all(~sum(.x == 1, na.rm = TRUE)/n()) |>
+  pivot_longer(cols = everything(), names_to = "question", values_to = "lowest_response") |>
+  mutate(floor_effect = ifelse(lowest_response > 0.3, "Yes", "No"))
+
+#Distribution for questionnaire
+qrp_distribution = qrp_data |> 
+  select(anonym_id, qrp_attitude) |> 
+  ggplot(aes(x = qrp_attitude)) +
+  geom_bar() +
+  coord_cartesian(xlim = c(8, 40))
+```
+
+# Checking correlation between variables to see redundancies
+```{r}
+cor_data = data |> 
+  select(burnout:open_practice) |> 
+  na.omit()
+
+correlations <- cor(as.matrix(cor_data))
+correlations[!lower.tri(correlations)] <- NA
+
+correlations = data.frame(correlations) |> 
+  rownames_to_column() |>
+  gather(key="variable", value="correlation", -rowname)
+
+correlations = correlations |> 
+  mutate(above_.8 = abs(correlation) > 0.8) |> 
+  filter(!is.na(correlation))
+
+#Nothing is above 0.8 yet
+```
+

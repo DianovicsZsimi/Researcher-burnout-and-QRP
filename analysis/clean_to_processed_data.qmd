@@ -3,11 +3,12 @@ title: "clean_to_processed_data_code"
 format: html
 ---
 
-## Researcher burnout and questionable research practice pilot data cleaning
+# Researcher burnout and questionable research practice pilot data cleaning
 
 ### Clean to processed data
 
 #Load libraries
+
 ```{r echo = FALSE ouput = FALSE}
 library(tidyverse)
 library(here)
@@ -15,12 +16,14 @@ data_path <- here("data")
 ```
 
 #Load data
+
 ```{r echo = FALSE ouput = FALSE}
 clean_data <- read_csv(here::here("data/raw_to_clean_data.csv"))
 codebook = read_csv(here::here("data/codebook.csv"))
 ```
 
 #Change responses from string to integer for Burnout Assessment Tool (BAT) questions
+
 ```{r}
 burnout_columns = c("bat_1", "bat_2", "bat_3", "bat_4")
 burnout_data = clean_data |> 
@@ -40,6 +43,7 @@ for (column in burnout_columns) {
 ```
 
 #Change responses from string to integer for Publication Pressure Questionnaire Revised (PPQR) questions
+
 ```{r}
 ppqr_data = clean_data |> 
   select(contains("ppqr"), anonym_id)
@@ -75,6 +79,7 @@ ppqr_resources_subscale = ppqr_data |>
 ```
 
 #Change responses from string to integer for Job Insecurity Scale (JIS) questions
+
 ```{r}
 jis_data = clean_data |> 
   select(contains("jis"), anonym_id)
@@ -106,6 +111,7 @@ jis_data_reversed = jis_data |>
 ```
 
 #Change responses from string to integer for Work-life balance measure (WLBM) questions
+
 ```{r}
 wlbm_data = clean_data |> 
   select(contains("wlbm"), anonym_id)
@@ -137,6 +143,7 @@ wlbm_data_reversed = wlbm_data |>
 ```
 
 #Change responses from string to integer for Copenhagen Psychosocial Questionnaire workload (COPSOQ-workload) questions
+
 ```{r}
 workload_data = clean_data |> 
   select(contains("copsoq_workload"), anonym_id) |> 
@@ -171,6 +178,7 @@ workload_data_reversed = workload_data |>
 ```
 
 #Change responses from string to integer for Copenhagen Psychosocial Questionnaire Social Support (COPSOQ-social-support) questions
+
 ```{r}
 soc_support_data = clean_data |> 
   select(contains("copsoq_soc_sup"), anonym_id)
@@ -194,6 +202,7 @@ for (column in soc_support_columns) {
 ```
 
 #Change responses from string to integer for Copenhagen Psychosocial Questionnaire Opportunities (COPSOQ-opportunities) questions
+
 ```{r}
 opportunities_data = clean_data |> 
   select(contains("copsoq_opp"), anonym_id)
@@ -216,6 +225,7 @@ for (column in opportunities_columns) {
 ```
 
 #Change responses from string to integer for Questionable Research Practice (QRP) questions
+
 ```{r}
 qrp_data = clean_data |> 
   select(contains("qrp"), anonym_id)
@@ -238,6 +248,7 @@ for (column in qrp_columns) {
 ```
 
 #Change responses from string to integer for Copenhagen Psychosocial Questionnaire Influence (COPSOQ-influence) questions
+
 ```{r}
 influence_data = clean_data |> 
   select(contains("copsoq_inf"), anonym_id)
@@ -260,6 +271,7 @@ for (column in influence_columns) {
 ```
 
 #Change responses from string to integer for Copenhagen Psychosocial Questionnaire Meaning (COPSOQ-Meaning) questions
+
 ```{r}
 meaning_data = clean_data |> 
   select(contains("copsoq_mean"), anonym_id)
@@ -282,6 +294,7 @@ for (column in meaning_columns) {
 ```
 
 #Change responses from string to integer for Role ambiguity and Role Conflict Scale (Role Ambiguity) questions
+
 ```{r}
 role_stressor_data = clean_data |> 
   select(contains("role"), anonym_id)
@@ -329,6 +342,7 @@ role_conflict_data_reversed = role_stressor_data_reversed |>
 ```
 
 #Change responses from string to integer for Pay Satisfaction questions
+
 ```{r}
 pay_satisfaction_data = clean_data |> 
   select(contains("pay_satisfaction"), anonym_id)
@@ -353,6 +367,7 @@ for (column in pay_satisfaction_columns) {
 ```
 
 #Change responses from string to integer for Tool Satisfaction questions
+
 ```{r}
 tool_satisfaction_data = clean_data |> 
   select(contains("tool_satisfaction"), anonym_id)
@@ -377,6 +392,7 @@ for (column in tool_satisfaction_columns) {
 ```
 
 #Change responses from string to integer for General Satisfaction questions
+
 ```{r}
 general_satisfaction_data = clean_data |> 
   select(contains("general_satisfaction"), anonym_id)
@@ -401,6 +417,7 @@ for (column in general_satisfaction_columns) {
 ```
 
 #Change responses from string to integer for Open Research Practice (ORP) questions
+
 ```{r}
 orp_data = clean_data |> 
   select(open_time, anonym_id) |> 
@@ -414,6 +431,7 @@ orp_data = clean_data |>
 ```
 
 #Creating script that checks for lazy responding
+
 ```{r}
 before_reverse_coding = burnout_data |> 
   left_join(ppqr_data, by = "anonym_id") |>
@@ -444,6 +462,7 @@ lazy_responding <- before_reverse_coding |>
 ```
 
 #Join datasets with identifiers
+
 ```{r}
 survey_data = burnout_data |> 
   left_join(ppqr_stress_subscale, by = "anonym_id") |> 
@@ -467,12 +486,14 @@ survey_data = burnout_data |>
 ```
 
 #Save descriptive data in another dataframe
+
 ```{r}
 descriptive_data = clean_data |> 
   select(anonym_id, gender:phd_dissertation)
 ```
 
 #Save conditional data
+
 ```{r}
 conditional_data = clean_data |> 
   select(anonym_id, finished, research_yes_no, academic_yes_no, consent, attention) |> 
@@ -480,6 +501,7 @@ conditional_data = clean_data |>
 ```
 
 #Join descriptive and survey data
+
 ```{r}
 processed_data = survey_data |> 
   left_join(descriptive_data, by = "anonym_id") |> 
@@ -487,9 +509,9 @@ processed_data = survey_data |>
 ```
 
 #Save data
+
 ```{r}
 write.csv(survey_data, here::here("data/survey_data.csv"), row.names = FALSE)
 write.csv(descriptive_data, here::here("data/descriptive_data.csv"), row.names = FALSE)
 write.csv(processed_data, here::here("data/processed_data.csv"), row.names = FALSE)
 ```
-
