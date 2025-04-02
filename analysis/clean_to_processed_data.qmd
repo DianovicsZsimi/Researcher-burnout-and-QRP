@@ -8,7 +8,6 @@ format: html
 ### Clean to processed data
 
 #Load libraries
-
 ```{r echo = FALSE ouput = FALSE}
 library(tidyverse)
 library(here)
@@ -16,7 +15,6 @@ data_path <- here("data")
 ```
 
 #Load data
-
 ```{r echo = FALSE ouput = FALSE}
 clean_data <- read_csv(here::here("data/raw_to_clean_data.csv"))
 codebook = read_csv(here::here("data/codebook.csv"))
@@ -42,7 +40,6 @@ for (column in burnout_columns) {
 ```
 
 #Change responses from string to integer for Publication Pressure Questionnaire Revised (PPQR) questions
-
 ```{r}
 ppqr_data = clean_data |> 
   select(contains("ppqr"), anonym_id)
@@ -63,13 +60,16 @@ for (column in ppqr_columns) {
 }
 
 ppqr_stress_subscale = ppqr_data |> 
-  select(ppqr_1:ppqr_6, anonym_id)
+  select(ppqr_1:ppqr_6, anonym_id) |> 
+  rename_with(~str_replace(., "ppqr", "ppqr_stress"))
 
 ppqr_attitude_subscale = ppqr_data |> 
-  select(ppqr_7:ppqr_12, anonym_id)
+  select(ppqr_7:ppqr_12, anonym_id) |> 
+  rename_with(~str_replace(., "ppqr", "ppqr_attitude"))
 
 ppqr_resources_subscale = ppqr_data |> 
-  select(ppqr_13:ppqr_18, anonym_id)
+  select(ppqr_13:ppqr_18, anonym_id) |> 
+  rename_with(~str_replace(., "ppqr", "ppqr_resources"))
 
 #No reverse coded items
 ```
@@ -95,7 +95,7 @@ for (column in jis_columns) {
 }
 
 #Reverse coded items: jis_2
-jis_data = jis_data |> 
+jis_data_reversed = jis_data |> 
   mutate(jis_2 = case_when(
     jis_2 == 1 ~ 5,
     jis_2 == 2 ~ 4,
@@ -126,7 +126,7 @@ for (column in wlbm_columns) {
 
 #Reverse coded item: wlbm_2
 
-wlbm_data = wlbm_data |> 
+wlbm_data_reversed = wlbm_data |> 
   mutate(wlbm_2 = case_when(
     wlbm_2 == 1 ~ 5,
     wlbm_2 == 2 ~ 4,
@@ -160,7 +160,7 @@ for (column in workload_columns) {
 
 #Reverse coded item: copsoq_workload_4
 
-workload_data = workload_data |> 
+workload_data_reversed = workload_data |> 
   mutate(copsoq_workload_4 = case_when(
     copsoq_workload_4 == 1 ~ 5,
     copsoq_workload_4 == 2 ~ 4,
@@ -306,8 +306,10 @@ for (column in role_stressor_columns) {
 reverse_ambiguity_columns = c("role_ambiguity_4", "role_ambiguity_5", "role_ambiguity_6", 
                               "role_ambiguity_10", "role_ambiguity_11", "role_ambiguity_12")
 
+role_stressor_data_reversed = role_stressor_data
+
 for (col in role_stressor_columns) {
-  role_stressor_data[[col]] = case_when(
+  role_stressor_data_reversed[[col]] = case_when(
     role_stressor_data[[col]] == 1 ~ 7,
     role_stressor_data[[col]] == 2 ~ 6,
     role_stressor_data[[col]] == 3 ~ 5,
@@ -318,11 +320,12 @@ for (col in role_stressor_columns) {
   )
 }
 
-role_ambiguity_data = role_stressor_data |> 
-  select(role_ambiguity_1:role_ambiguity_6, anonym_id)
+role_ambiguity_data_reversed = role_stressor_data_reversed |> 
+  select(role_ambiguity_1:role_ambiguity_6, anonym_id) 
 
-role_conflict_data = role_stressor_data |> 
-  select(role_ambiguity_7:role_ambiguity_12, anonym_id)
+role_conflict_data_reversed = role_stressor_data_reversed |> 
+  select(role_ambiguity_7:role_ambiguity_12, anonym_id) |> 
+  rename_with(~str_replace(., "role_ambiguity", "role_conflict"))
 ```
 
 #Change responses from string to integer for Pay Satisfaction questions
@@ -345,6 +348,8 @@ for (column in pay_satisfaction_columns) {
     clean_data[[column]] == "Very satisfied" ~ 7
   )
 }
+
+#No reverse coded items
 ```
 
 #Change responses from string to integer for Tool Satisfaction questions
@@ -367,6 +372,8 @@ for (column in tool_satisfaction_columns) {
     clean_data[[column]] == "Very satisfied" ~ 7
   )
 }
+
+#No reverse coded items
 ```
 
 #Change responses from string to integer for General Satisfaction questions
@@ -389,6 +396,8 @@ for (column in general_satisfaction_columns) {
     clean_data[[column]] == "Very satisfied" ~ 7
   )
 }
+
+#No reverse coded items
 ```
 
 #Change responses from string to integer for Open Research Practice (ORP) questions
@@ -400,24 +409,56 @@ orp_data = clean_data |>
     open_time == "Disagree" ~ 0
   )) |> 
   select(-open_time)
+
+#No reverse coded items
+```
+
+#Creating script that checks for lazy responding
+```{r}
+before_reverse_coding = burnout_data |> 
+  left_join(ppqr_data, by = "anonym_id") |>
+  left_join(jis_data, by = "anonym_id") |>
+  left_join(wlbm_data, by = "anonym_id") |>
+  left_join(workload_data, by = "anonym_id") |>
+  left_join(soc_support_data, by = "anonym_id") |>
+  left_join(opportunities_data, by = "anonym_id") |>
+  left_join(qrp_data, by = "anonym_id") |>
+  left_join(influence_data, by = "anonym_id") |>
+  left_join(meaning_data, by = "anonym_id") |>
+  left_join(role_stressor_data, by = "anonym_id") |>
+  left_join(pay_satisfaction_data, by = "anonym_id") |>
+  left_join(tool_satisfaction_data, by = "anonym_id") |>
+  left_join(general_satisfaction_data, by = "anonym_id") |>
+  left_join(orp_data, by = "anonym_id")
+
+lazy_responding <- before_reverse_coding |> 
+  mutate(
+    anonym_id = as.character(anonym_id),
+    total_sum = rowSums(select(before_reverse_coding, where(is.numeric)), na.rm = TRUE),
+    lazy_responding = apply(before_reverse_coding, 1, function(row) all(row==row[2], na.rm = TRUE)),
+    anonym_id = as.integer(anonym_id)
+  ) |> 
+  relocate(any_of(c("anonym_id", "lazy_responding", "total_sum")), .before = bat_1)
+
+
 ```
 
 #Join datasets with identifiers
 ```{r}
-processed_data = burnout_data |> 
+survey_data = burnout_data |> 
   left_join(ppqr_stress_subscale, by = "anonym_id") |> 
   left_join(ppqr_attitude_subscale, by = "anonym_id") |> 
   left_join(ppqr_resources_subscale, by = "anonym_id") |> 
-  left_join(jis_data, by = "anonym_id") |> 
-  left_join(wlbm_data, by = "anonym_id") |> 
-  left_join(workload_data, by = "anonym_id") |> 
+  left_join(jis_data_reversed, by = "anonym_id") |> 
+  left_join(wlbm_data_reversed, by = "anonym_id") |> 
+  left_join(workload_data_reversed, by = "anonym_id") |> 
   left_join(soc_support_data, by = "anonym_id") |> 
   left_join(opportunities_data, by = "anonym_id") |> 
   left_join(qrp_data, by = "anonym_id") |> 
   left_join(influence_data, by = "anonym_id") |> 
   left_join(meaning_data, by = "anonym_id") |> 
-  left_join(role_ambiguity_data, by = "anonym_id") |> 
-  left_join(role_conflict_data, by = "anonym_id") |> 
+  left_join(role_ambiguity_data_reversed, by = "anonym_id") |> 
+  left_join(role_conflict_data_reversed, by = "anonym_id") |> 
   left_join(pay_satisfaction_data, by = "anonym_id") |> 
   left_join(tool_satisfaction_data, by = "anonym_id") |> 
   left_join(general_satisfaction_data, by = "anonym_id") |> 
@@ -431,9 +472,24 @@ descriptive_data = clean_data |>
   select(anonym_id, gender:phd_dissertation)
 ```
 
+#Save conditional data
+```{r}
+conditional_data = clean_data |> 
+  select(anonym_id, finished, research_yes_no, academic_yes_no, consent, attention) |> 
+  left_join(select(lazy_responding, anonym_id, lazy_responding), by = "anonym_id")
+```
+
+#Join descriptive and survey data
+```{r}
+processed_data = survey_data |> 
+  left_join(descriptive_data, by = "anonym_id") |> 
+  left_join(conditional_data, by = "anonym_id")
+```
+
 #Save data
 ```{r}
-write.csv(processed_data, here::here("data/clean_to_processed_data.csv"), row.names = FALSE)
+write.csv(survey_data, here::here("data/survey_data.csv"), row.names = FALSE)
 write.csv(descriptive_data, here::here("data/descriptive_data.csv"), row.names = FALSE)
+write.csv(processed_data, here::here("data/processed_data.csv"), row.names = FALSE)
 ```
 

@@ -8,15 +8,79 @@ format: html
 
 ### Processed to aggregated data
 
+#Loading packages
+```{r}
+library(tidyverse)
+library(here)
+data_path <- here("data")
+```
+
+#Loading data
+```{r}
+processed = read_csv(here::here("data/processed_data.csv"))
+```
 
 #Filtering out invalid data
 ```{r}
-data = data |> 
-  filter(finished == "True" 
-         & consent == "Yes" 
-         & academic_yes_no == "Yes"
-         & research_yes_no == "Yes"
+processed_filtered = processed |> 
+  filter(finished == T 
+         & consent == T 
+         & academic_yes_no == T
+         & research_yes_no == T
          & last_published != "More than 10 years ago or Never"
-         & attention_check == "Failed")
+         & attention == "Passed"
+         & lazy_responding == F)
+```
+
+#Aggregating data
+```{r}
+surveys = c("bat", "ppqr_stress", "ppqr_attitude", "ppqr_resource", "copsoq_workload", "copsoq_soc_sup", "copsoq_oppor",
+            "qrp_attitude", "copsoq_infl", "copsoq_meaning", "role_ambiguity", "role_conflict",
+            "pay_satisfaction", "tool_satisfaction", "general_satisfaction", "open_practice")
+
+# bat_aggregated <- processed_filtered |>
+#   group_by(anonym_id) |>
+#   summarize(bat_total = rowSums(across(starts_with("bat_")), na.rm = TRUE))
+
+
+aggregate_function = function(data, survey){
+  data |>
+    group_by(anonym_id) |>
+    summarize("{survey}_total" := rowSums(across(starts_with(survey)), na.rm = TRUE))
+}
+
+for (survey in surveys){
+  assign(paste0(survey, "_aggregated"), aggregate_function(processed_filtered, survey))
+}
+
+aggregated_datasets <- mget(ls(pattern = "_aggregated$"))
+aggregated_data <- reduce(aggregated_datasets, left_join, by = "anonym_id")
+```
+
+#Checking for error while aggregating
+```{r}
+bat_aggregated_manual = processed_filtered |>
+  group_by(anonym_id) |>
+  summarize(bat_total = rowSums(across(starts_with("bat")), na.rm = TRUE))
+
+role_ambiguity_aggregated_manual = processed_filtered |>
+  group_by(anonym_id) |>
+  summarize(role_ambiguity_total = rowSums(across(starts_with("role_ambiguity")), na.rm = TRUE))
+
+#Compare
+all(bat_aggregated$bat_total == bat_aggregated_manual$bat_total)
+all(role_ambiguity_aggregated$role_ambiguity_total == role_ambiguity_aggregated_manual$role_ambiguity_total)
+```
+
+#Joining aggregate data with descriptives
+```{r}
+aggregated_data = processed_filtered |> 
+  select(anonym_id, gender:lazy_responding) |> 
+  left_join(aggregated_data, by = "anonym_id")
+```
+
+#Rename columns
+```{r}
+
 ```
 

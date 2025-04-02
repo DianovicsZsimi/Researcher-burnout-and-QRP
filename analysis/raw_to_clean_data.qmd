@@ -98,7 +98,10 @@ descriptive_data_academia_length = raw_data_filtered |>
 ```{r}
 raw_data_filtered = raw_data_filtered |> 
   mutate(anonym_id = row_number()) |> 
-  select(-finished, -consent, -academic_yes_no, -research_yes_no)
+  mutate(finished = ifelse(finished == "True", T, F),
+         consent = ifelse(consent == "Yes", T, F),
+         academic_yes_no = ifelse(academic_yes_no == "Yes", T, F),
+         research_yes_no = ifelse(research_yes_no == "Yes", T, F))
 ```
 
 #Locate attention check questions
