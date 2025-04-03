@@ -1,25 +1,57 @@
 anonym_id,gender,title,discipline,last_published,academia_length,phd_dissertation,finished,research_yes_no,academic_yes_no,consent,attention,lazy_responding,burnout,influence,meaning,opportunities,social_support,workload,general_satisfaction,job_security,open_practice,pay_satisfaction,pub_pressure_attitude,pub_pressure_resource,pub_pressure_stress,qrp_attitude,role_ambiguity,role_conflict,tool_satisfaction,work_life_balance
-1,Non-binary / third gender,Post Doc,"STEM (science, technology, engineering, mathematics)",This year,1-5 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,20,12,2,5,6,12,2,4,1,14,26,22,26,9,30,37,8,20
-2,Man,Assistant Professor,Non-STEM,This year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,10,22,5,12,15,19,4,9,1,4,22,18,20,12,22,25,7,20
-3,Man,Full Professor,Non-STEM,This year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,14,27,8,14,24,13,11,14,1,4,21,22,15,9,22,24,8,11
-5,Woman,PhD student,"STEM (science, technology, engineering, mathematics)",This year,1-5 years,3-4 articles,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,13,17,6,12,15,14,4,12,1,10,27,18,20,8,21,25,5,20
-6,Woman,Associate Professor,Non-STEM,This year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,10,20,10,14,16,13,9,17,1,8,23,20,21,11,22,26,12,16
-7,Man,Assistant Professor,Non-STEM,This year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,12,20,8,10,22,16,11,15,1,4,23,20,22,13,22,26,6,16
-8,Man,Full Professor,Non-STEM,In the last year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,8,21,7,15,24,12,12,20,1,12,24,21,16,9,25,28,12,4
-9,Man,Full Professor,Non-STEM,This year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,10,21,6,12,19,16,10,15,1,13,20,22,17,16,19,24,11,7
-10,Woman,Post Doc,Non-STEM,This year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,12,21,8,10,21,9,10,18,1,8,28,22,22,18,30,30,7,5
-11,Woman,Assistant Professor,Non-STEM,This year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,12,22,8,11,13,12,10,18,1,4,23,20,21,10,20,23,4,13
-12,Woman,Post Doc,"STEM (science, technology, engineering, mathematics)",This year,6-10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,10,17,8,14,20,19,12,16,1,10,27,22,18,13,28,29,10,18
-13,Woman,Full Professor,Non-STEM,In the last year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,7,25,9,15,22,10,10,13,1,14,14,19,18,9,24,26,8,4
-14,Woman,Post Doc,Non-STEM,In the last year,6-10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,9,25,5,12,25,9,8,9,1,10,26,20,17,12,29,32,12,5
-16,Woman,Assistant Professor,Non-STEM,In the last year,6-10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,15,17,7,11,23,20,7,13,1,4,23,23,23,15,20,23,3,20
-17,Woman,PhD student,Non-STEM,This year,1-5 years,3-4 articles,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,13,16,6,12,23,12,8,4,1,10,22,20,21,9,24,24,9,12
-18,Woman,PhD student,Non-STEM,This year,1-5 years,1-2 articles,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,12,23,8,12,26,13,10,7,1,6,21,24,15,11,24,28,9,11
-19,Man,PhD student,Non-STEM,In the last 5 years,1-5 years,3-4 articles,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,17,24,7,9,17,13,7,11,1,12,18,21,26,28,14,13,9,9
-20,Woman,This does not apply to me,"STEM (science, technology, engineering, mathematics)",In the last 5 years,Less than 1 year,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,20,8,2,5,8,16,2,13,1,8,27,18,22,9,30,34,4,9
-22,Woman,Full Professor,"STEM (science, technology, engineering, mathematics)",This year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,13,22,8,8,11,14,12,20,1,4,23,18,23,9,24,28,6,15
-23,Man,Post Doc,Non-STEM,In the last year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,14,23,6,13,20,16,6,8,1,11,23,20,23,14,25,32,5,16
-24,Man,Full Professor,"STEM (science, technology, engineering, mathematics)",This year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,4,30,7,12,29,8,6,20,0,2,13,21,15,9,23,25,10,4
-25,Woman,PhD student,Non-STEM,This year,1-5 years,3-4 articles,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,8,24,8,12,19,9,10,10,1,12,21,20,16,15,28,31,12,4
-26,Woman,Post Doc,Non-STEM,This year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,10,22,9,14,22,14,7,16,1,7,19,20,20,20,25,29,9,16
-28,Woman,Associate Professor,"STEM (science, technology, engineering, mathematics)",This year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,13,22,8,8,10,10,11,15,0,10,23,19,17,17,29,31,9,16
+1,Non-binary / third gender,Post Doc,"STEM (science, technology, engineering, mathematics)",This year,1-5 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,20,12,2,5,6,12,2,4,1,14,26,22,26,9,36,43,8,20
+2,Man,Assistant Professor,Non-STEM,This year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,10,22,5,12,15,19,4,9,1,4,22,18,20,12,28,39,7,20
+3,Man,Full Professor,Non-STEM,This year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,14,27,8,14,24,13,11,14,1,4,21,22,15,9,24,32,8,11
+5,Woman,PhD student,"STEM (science, technology, engineering, mathematics)",This year,1-5 years,3-4 articles,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,13,17,6,12,15,14,4,12,1,10,27,18,20,8,27,35,5,20
+6,Woman,Associate Professor,Non-STEM,This year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,10,20,10,14,16,13,9,17,1,8,23,20,21,11,20,26,12,16
+7,Man,Assistant Professor,Non-STEM,This year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,12,20,8,10,22,16,11,15,1,4,23,20,22,13,18,24,6,16
+8,Man,Full Professor,Non-STEM,In the last year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,8,21,7,15,24,12,12,20,1,12,24,21,16,9,29,32,12,4
+9,Man,Full Professor,Non-STEM,This year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,10,21,6,12,19,16,10,15,1,13,20,22,17,16,31,36,11,7
+10,Woman,Post Doc,Non-STEM,This year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,12,21,8,10,21,9,10,18,1,8,28,22,22,18,14,20,7,5
+11,Woman,Assistant Professor,Non-STEM,This year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,12,22,8,11,13,12,10,18,1,4,23,20,21,10,22,29,4,13
+12,Woman,Post Doc,"STEM (science, technology, engineering, mathematics)",This year,6-10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,10,17,8,14,20,19,12,16,1,10,27,22,18,13,16,17,10,18
+13,Woman,Full Professor,Non-STEM,In the last year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,7,25,9,15,22,10,10,13,1,14,14,19,18,9,24,32,8,4
+14,Woman,Post Doc,Non-STEM,In the last year,6-10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,9,25,5,12,25,9,8,9,1,10,26,20,17,12,15,18,12,5
+16,Woman,Assistant Professor,Non-STEM,In the last year,6-10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,15,17,7,11,23,20,7,13,1,4,23,23,23,15,30,39,3,20
+17,Woman,PhD student,Non-STEM,This year,1-5 years,3-4 articles,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,13,16,6,12,23,12,8,4,1,10,22,20,21,9,24,32,9,12
+18,Woman,PhD student,Non-STEM,This year,1-5 years,1-2 articles,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,12,23,8,12,26,13,10,7,1,6,21,24,15,11,22,22,9,11
+19,Man,PhD student,Non-STEM,In the last 5 years,1-5 years,3-4 articles,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,17,24,7,9,17,13,7,11,1,12,18,21,26,28,24,27,9,9
+20,Woman,This does not apply to me,"STEM (science, technology, engineering, mathematics)",In the last 5 years,Less than 1 year,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,20,8,2,5,8,16,2,13,1,8,27,18,22,9,32,36,4,9
+22,Woman,Full Professor,"STEM (science, technology, engineering, mathematics)",This year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,13,22,8,8,11,14,12,20,1,4,23,18,23,9,24,30,6,15
+23,Man,Post Doc,Non-STEM,In the last year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,14,23,6,13,20,16,6,8,1,11,23,20,23,14,39,46,5,16
+24,Man,Full Professor,"STEM (science, technology, engineering, mathematics)",This year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,4,30,7,12,29,8,6,20,0,2,13,21,15,9,13,15,10,4
+25,Woman,PhD student,Non-STEM,This year,1-5 years,3-4 articles,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,8,24,8,12,19,9,10,10,1,12,21,20,16,15,22,29,12,4
+26,Woman,Post Doc,Non-STEM,This year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,10,22,9,14,22,14,7,16,1,7,19,20,20,20,33,39,9,16
+28,Woman,Associate Professor,"STEM (science, technology, engineering, mathematics)",This year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,13,22,8,8,10,10,11,15,0,10,23,19,17,17,25,31,9,16
+29,Woman,Post Doc,"STEM (science, technology, engineering, mathematics)",In the last 5 years,6-10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,6,22,10,13,25,11,10,19,1,12,15,23,12,14,11,16,10,5
+31,Woman,This does not apply to me,Non-STEM,This year,1-5 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,10,23,10,15,20,16,12,13,1,14,23,22,16,11,21,31,12,15
+32,Man,Post Doc,Non-STEM,This year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,11,18,6,9,18,15,6,6,1,6,17,21,19,10,27,34,4,16
+35,Woman,Assistant Professor,"STEM (science, technology, engineering, mathematics)",In the last year,6-10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,20,8,6,10,14,20,10,4,0,2,25,21,22,24,35,42,2,16
+36,Woman,Post Doc,Non-STEM,In the last year,6-10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,9,23,8,14,29,15,12,16,1,9,17,17,19,14,32,39,9,14
+37,Man,Assistant Professor,Non-STEM,This year,6-10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,14,21,8,10,22,17,14,16,1,10,20,19,20,10,33,42,14,20
+41,Woman,Post Doc,"STEM (science, technology, engineering, mathematics)",This year,1-5 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,9,20,7,10,24,8,11,6,0,10,18,17,16,16,15,23,10,8
+42,Woman,This does not apply to me,Non-STEM,This year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,14,21,7,12,23,12,9,15,1,4,25,19,17,15,25,29,7,8
+43,Woman,Associate Professor,Non-STEM,This year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,6,26,9,15,17,10,10,20,1,10,15,18,13,17,17,24,6,11
+44,Woman,Full Professor,"STEM (science, technology, engineering, mathematics)",This year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,8,24,9,12,22,9,14,19,1,14,20,23,18,11,16,23,11,5
+46,Man,Full Professor,"STEM (science, technology, engineering, mathematics)",This year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,10,30,10,15,20,20,14,17,1,12,20,25,19,17,37,47,11,13
+47,Woman,Associate Professor,Non-STEM,This year,6-10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,10,25,8,13,14,13,12,15,1,10,24,14,19,9,35,43,7,14
+48,Man,PhD student,"STEM (science, technology, engineering, mathematics)",This year,1-5 years,I don't know/ This does not apply to me/ 0 articles,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,9,21,10,13,17,12,14,17,1,4,24,19,16,9,17,24,9,8
+49,Woman,Full Professor,Non-STEM,This year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,11,25,10,8,13,12,10,4,0,10,22,18,17,10,22,26,7,8
+50,Woman,Assistant Professor,Non-STEM,This year,6-10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,11,29,8,13,20,14,10,12,1,10,16,20,16,21,18,26,8,8
+51,Man,PhD student,"STEM (science, technology, engineering, mathematics)",This year,1-5 years,I don't know/ This does not apply to me/ 0 articles,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,8,26,7,15,25,11,10,12,1,6,22,21,16,19,21,26,8,5
+52,Woman,Full Professor,"STEM (science, technology, engineering, mathematics)",This year,1-5 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,9,19,8,15,21,10,8,17,1,6,25,18,22,9,19,26,5,10
+53,Woman,Associate Professor,"STEM (science, technology, engineering, mathematics)",In the last 5 years,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,16,15,10,13,6,12,14,20,1,12,26,19,22,19,24,30,3,20
+56,Woman,Assistant Professor,"STEM (science, technology, engineering, mathematics)",In the last year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,10,21,7,15,20,12,9,13,1,8,23,19,20,11,27,31,7,9
+57,Man,Assistant Professor,"STEM (science, technology, engineering, mathematics)",This year,1-5 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,12,21,8,10,18,12,11,12,1,6,25,19,20,17,23,27,4,16
+58,Woman,Associate Professor,Non-STEM,In the last year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,7,23,10,13,18,11,11,16,1,12,21,19,17,15,15,23,12,7
+59,Woman,Associate Professor,"STEM (science, technology, engineering, mathematics)",In the last year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,15,20,6,12,13,16,10,16,0,4,19,19,21,17,23,28,6,20
+62,Man,Associate Professor,"STEM (science, technology, engineering, mathematics)",This year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,9,25,10,12,19,15,12,20,1,12,20,22,19,21,25,31,11,8
+63,Man,Post Doc,"STEM (science, technology, engineering, mathematics)",This year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,11,20,6,10,24,13,10,7,1,10,23,24,23,13,21,30,4,16
+64,Prefer not to say,Full Professor,"STEM (science, technology, engineering, mathematics)",This year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,4,19,2,3,6,8,4,0,1,4,0,0,0,8,24,31,4,16
+65,Man,Full Professor,"STEM (science, technology, engineering, mathematics)",This year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,7,28,9,15,26,12,12,20,1,14,21,24,16,16,28,31,8,6
+66,Man,Full Professor,Non-STEM,This year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,9,13,10,13,10,14,12,18,1,4,27,16,23,24,12,17,4,11
+67,Woman,Full Professor,Non-STEM,In the last year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,10,23,8,15,25,17,8,19,1,12,16,21,19,9,28,36,10,16
+68,Man,This does not apply to me,"STEM (science, technology, engineering, mathematics)",This year,6-10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,13,21,8,12,21,15,10,9,1,12,24,21,20,12,19,26,11,19
+69,Woman,Associate Professor,"STEM (science, technology, engineering, mathematics)",This year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,12,21,7,10,9,13,10,18,0,9,22,18,18,20,18,22,6,14
+70,Man,Associate Professor,"STEM (science, technology, engineering, mathematics)",This year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,10,24,8,15,20,12,12,18,1,4,18,20,20,13,17,27,8,9
+71,Man,Full Professor,Non-STEM,This year,More than 10 years,NA,TRUE,TRUE,TRUE,TRUE,Passed,FALSE,16,25,6,15,10,19,8,14,1,12,27,18,19,13,39,45,10,13

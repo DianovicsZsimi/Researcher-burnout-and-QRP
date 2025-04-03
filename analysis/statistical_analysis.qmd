@@ -29,7 +29,9 @@ data = read_csv(here::here("data/aggregated_data.csv"))
 
 ## Normality
 ```{r}
-
+#Use robust ML estimation
+#estimator = "MLM" or "MLMV" or "MLR"
+#se="robust.sem"
 ```
 
 ##
@@ -85,19 +87,16 @@ writeLines(summary_text, here::here("analysis/tables/job_resources_summary.txt")
 
 ## Job demands and resources plus burnout: Structural equation modeling
 ```{r}
-data = data |> 
-  rename(burnout_1 = burnout)
 
 jdr_b_model = '
   # Measurement model
   job_demands =~ workload + pub_pressure_attitude + pub_pressure_stress + role_ambiguity + role_conflict + work_life_balance
   job_resources =~ opportunities + meaning + influence + social_support + pay_satisfaction + tool_satisfaction + pub_pressure_resource + general_satisfaction + job_security
-  burnout =~ burnout_1
   
   # Structural model
   burnout ~ job_demands + job_resources'
 
-jdr_b_fit = cfa(jdr_b_model, data = data, std.lv = TRUE)
+jdr_b_fit = sem(jdr_b_model, data = data, std.lv = TRUE, estimator = "MLR", se = "robust.sem")
 
 summary(jdr_b_fit, fit.measures = TRUE, standardized = TRUE)
 summary_text <- capture.output(summary(jdr_b_fit, fit.measures = TRUE))
@@ -114,14 +113,12 @@ jdr_b_qrp_model = '
   # Measurement model
   job_demands =~ workload + pub_pressure_attitude + pub_pressure_stress + role_ambiguity + role_conflict + work_life_balance
   job_resources =~ opportunities + meaning + influence + social_support + pay_satisfaction + tool_satisfaction + pub_pressure_resource + general_satisfaction + job_security
-  burnout =~ burnout_1
-  qrp =~ qrp_attitude
   
   # Structural model
   burnout ~ job_demands + job_resources
-  qrp ~ burnout + job_demands + job_resources'
+  qrp_attitude ~ burnout'
 
-jdr_b_qrp_fit = cfa(jdr_b_qrp_model, data = data, std.lv = TRUE)
+jdr_b_qrp_fit = sem(jdr_b_qrp_model, data = data, std.lv = TRUE, estimator = "MLR", se = "robust.sem")
 
 summary(jdr_b_qrp_fit, fit.measures = TRUE, standardized = TRUE)
 summary_text <- capture.output(summary(jdr_b_qrp_fit, fit.measures = TRUE))

@@ -328,13 +328,13 @@ for (column in role_stressor_columns) {
   )
 }
 
-#Reverse coded items: 4, 5, 6, 10, 11, 12
-reverse_ambiguity_columns = c("role_stressor_4", "role_stressor_5", "role_stressor_6", 
+#Reverse coded items: 4, 5, 6, 10, 11, 12 
+reverse_stresor_columns = c("role_stressor_4", "role_stressor_5", "role_stressor_6", 
                               "role_stressor_10", "role_stressor_11", "role_stressor_12")
 
 role_stressor_data_reversed = role_stressor_data
 
-for (col in role_stressor_columns) {
+for (col in reverse_stresor_columns) {
   role_stressor_data_reversed[[col]] = case_when(
     role_stressor_data[[col]] == 1 ~ 7,
     role_stressor_data[[col]] == 2 ~ 6,
@@ -452,7 +452,8 @@ before_reverse_coding = burnout_data |>
   left_join(qrp_data, by = "anonym_id") |>
   left_join(influence_data, by = "anonym_id") |>
   left_join(meaning_data, by = "anonym_id") |>
-  left_join(role_stressor_data, by = "anonym_id") |>
+  left_join(role_conflict_data_reversed, by = "anonym_id") |>
+  left_join(role_ambiguity_data_reversed, by = "anonym_id") |>
   left_join(pay_satisfaction_data, by = "anonym_id") |>
   left_join(tool_satisfaction_data, by = "anonym_id") |>
   left_join(general_satisfaction_data, by = "anonym_id") |>

@@ -1,48 +1,48 @@
-lavaan 0.6-19 ended normally after 32 iterations
+lavaan 0.6-19 ended normally after 26 iterations
 
   Estimator                                         ML
   Optimization method                           NLMINB
   Number of model parameters                        18
 
-  Number of observations                            24
+  Number of observations                            56
 
 Model Test User Model:
                                                       
-  Test statistic                                49.272
+  Test statistic                                71.970
   Degrees of freedom                                27
-  P-value (Chi-square)                           0.006
+  P-value (Chi-square)                           0.000
 
 Model Test Baseline Model:
 
-  Test statistic                               109.272
+  Test statistic                               206.821
   Degrees of freedom                                36
   P-value                                        0.000
 
 User Model versus Baseline Model:
 
-  Comparative Fit Index (CFI)                    0.696
-  Tucker-Lewis Index (TLI)                       0.595
+  Comparative Fit Index (CFI)                    0.737
+  Tucker-Lewis Index (TLI)                       0.649
 
 Loglikelihood and Information Criteria:
 
-  Loglikelihood user model (H0)               -523.051
-  Loglikelihood unrestricted model (H1)       -498.415
+  Loglikelihood user model (H0)              -1270.136
+  Loglikelihood unrestricted model (H1)      -1234.151
                                                       
-  Akaike (AIC)                                1082.103
-  Bayesian (BIC)                              1103.308
-  Sample-size adjusted Bayesian (SABIC)       1047.543
+  Akaike (AIC)                                2576.272
+  Bayesian (BIC)                              2612.729
+  Sample-size adjusted Bayesian (SABIC)       2556.155
 
 Root Mean Square Error of Approximation:
 
-  RMSEA                                          0.185
-  90 Percent confidence interval - lower         0.099
-  90 Percent confidence interval - upper         0.266
-  P-value H_0: RMSEA <= 0.050                    0.011
-  P-value H_0: RMSEA >= 0.080                    0.973
+  RMSEA                                          0.172
+  90 Percent confidence interval - lower         0.125
+  90 Percent confidence interval - upper         0.221
+  P-value H_0: RMSEA <= 0.050                    0.000
+  P-value H_0: RMSEA >= 0.080                    0.999
 
 Standardized Root Mean Square Residual:
 
-  SRMR                                           0.137
+  SRMR                                           0.116
 
 Parameter Estimates:
 
@@ -53,26 +53,26 @@ Parameter Estimates:
 Latent Variables:
                    Estimate  Std.Err  z-value  P(>|z|)
   job_resources =~                                    
-    opportunities     1.907    0.500    3.810    0.000
-    meaning           1.664    0.326    5.099    0.000
-    influence         3.191    0.859    3.713    0.000
-    social_support    3.584    1.131    3.169    0.002
-    pay_satisfactn   -0.683    0.769   -0.887    0.375
-    tool_satisfctn    1.037    0.555    1.869    0.062
-    generl_stsfctn    2.288    0.538    4.249    0.000
-    job_security      2.208    0.940    2.350    0.019
-    pub_prssr_rsrc    0.385    0.343    1.121    0.262
+    opportunities     1.936    0.333    5.813    0.000
+    meaning           1.637    0.216    7.571    0.000
+    influence         2.445    0.588    4.161    0.000
+    social_support    2.627    0.784    3.353    0.001
+    pay_satisfactn    0.889    0.496    1.791    0.073
+    tool_satisfctn    1.321    0.385    3.432    0.001
+    generl_stsfctn    2.149    0.340    6.323    0.000
+    job_security      3.202    0.645    4.966    0.000
+    pub_prssr_rsrc    1.494    0.460    3.249    0.001
 
 Variances:
                    Estimate  Std.Err  z-value  P(>|z|)
-   .opportunities     3.587    1.200    2.990    0.003
-   .meaning           0.891    0.442    2.015    0.044
-   .influence        10.843    3.583    3.026    0.002
-   .social_support   21.090    6.625    3.183    0.001
-   .pay_satisfactn   12.352    3.583    3.447    0.001
-   .tool_satisfctn    6.034    1.783    3.383    0.001
-   .generl_stsfctn    3.640    1.310    2.780    0.005
-   .job_security     16.457    4.943    3.329    0.001
-   .pub_prssr_rsrc    2.428    0.707    3.437    0.001
+   .opportunities     3.653    0.813    4.494    0.000
+   .meaning           0.961    0.306    3.139    0.002
+   .influence        14.126    2.842    4.970    0.000
+   .social_support   26.880    5.273    5.098    0.000
+   .pay_satisfactn   11.720    2.236    5.241    0.000
+   .tool_satisfctn    6.445    1.267    5.087    0.000
+   .generl_stsfctn    3.442    0.813    4.236    0.000
+   .job_security     15.543    3.247    4.787    0.000
+   .pub_prssr_rsrc    9.329    1.825    5.111    0.000
     job_resources     1.000                           
 

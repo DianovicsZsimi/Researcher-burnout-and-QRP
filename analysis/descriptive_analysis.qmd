@@ -166,7 +166,7 @@ qrp_distribution = qrp_data |>
 
 ```{r}
 cor_data = data |> 
-  select(burnout:open_practice) |> 
+  select(burnout:work_life_balance) |> 
   na.omit()
 
 correlations <- cor(as.matrix(cor_data))
@@ -180,5 +180,9 @@ correlations = correlations |>
   mutate(above_.8 = abs(correlation) > 0.8) |> 
   filter(!is.na(correlation))
 
-#Nothing is above 0.8 yet
+#Check if anything is above 0.8
+
+correlations |> 
+  filter(above_.8 == TRUE) |> 
+  select(rowname, variable, correlation)
 ```
