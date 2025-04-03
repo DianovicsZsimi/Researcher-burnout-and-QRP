@@ -7,23 +7,20 @@ format: html
 
 ### Clean to processed data
 
-#Load libraries
-
+# Load libraries
 ```{r echo = FALSE ouput = FALSE}
 library(tidyverse)
 library(here)
 data_path <- here("data")
 ```
 
-#Load data
-
+# Load data
 ```{r echo = FALSE ouput = FALSE}
 clean_data <- read_csv(here::here("data/raw_to_clean_data.csv"))
 codebook = read_csv(here::here("data/codebook.csv"))
 ```
 
-#Change responses from string to integer for Burnout Assessment Tool (BAT) questions
-
+# Change responses from string to integer for Burnout Assessment Tool (BAT) questions
 ```{r}
 burnout_columns = c("bat_1", "bat_2", "bat_3", "bat_4")
 burnout_data = clean_data |> 
@@ -42,8 +39,7 @@ for (column in burnout_columns) {
 #No reverse coded items
 ```
 
-#Change responses from string to integer for Publication Pressure Questionnaire Revised (PPQR) questions
-
+# Change responses from string to integer for Publication Pressure Questionnaire Revised (PPQR) questions
 ```{r}
 ppqr_data = clean_data |> 
   select(contains("ppqr"), anonym_id)
@@ -78,8 +74,7 @@ ppqr_resources_subscale = ppqr_data |>
 #No reverse coded items
 ```
 
-#Change responses from string to integer for Job Insecurity Scale (JIS) questions
-
+# Change responses from string to integer for Job Insecurity Scale (JIS) questions
 ```{r}
 jis_data = clean_data |> 
   select(contains("jis"), anonym_id)
@@ -99,19 +94,24 @@ for (column in jis_columns) {
   )
 }
 
-#Reverse coded items: jis_2
-jis_data_reversed = jis_data |> 
-  mutate(jis_2 = case_when(
-    jis_2 == 1 ~ 5,
-    jis_2 == 2 ~ 4,
-    jis_2 == 3 ~ 3,
-    jis_2 == 4 ~ 2,
-    jis_2 == 5 ~ 1
-  ))
+#Reverse coded items: jis_2 --> jis_1, jis_3, jis_4
+#Wrong recoding direction: The higher the score, the higher job security should be, so the job resources latent variable is consistent
+reverse_jis_columns = c("jis_1", "jis_3", "jis_4")
+
+jis_data_reversed = jis_data
+
+for (col in reverse_jis_columns) {
+  jis_data_reversed[[col]] = case_when(
+    jis_data_reversed[[col]] == 1 ~ 5,
+    jis_data_reversed[[col]] == 2 ~ 4,
+    jis_data_reversed[[col]] == 3 ~ 3,
+    jis_data_reversed[[col]] == 4 ~ 2,
+    jis_data_reversed[[col]] == 5 ~ 1
+  )
+}
 ```
 
-#Change responses from string to integer for Work-life balance measure (WLBM) questions
-
+# Change responses from string to integer for Work-life balance measure (WLBM) questions
 ```{r}
 wlbm_data = clean_data |> 
   select(contains("wlbm"), anonym_id)
@@ -130,20 +130,24 @@ for (column in wlbm_columns) {
   )
 }
 
-#Reverse coded item: wlbm_2
+#Reverse coded item: wlbm_2 --> wlbm_1, wlbm_3, wlbm_4
+#Wrong recoding direction: The higher the score, the higher work life imbalance should be, so the job demands latent variable is consistent
+reverse_wlbm_columns = c("wlbm_1", "wlbm_3", "wlbm_4")
 
-wlbm_data_reversed = wlbm_data |> 
-  mutate(wlbm_2 = case_when(
-    wlbm_2 == 1 ~ 5,
-    wlbm_2 == 2 ~ 4,
-    wlbm_2 == 3 ~ 3,
-    wlbm_2 == 4 ~ 2,
-    wlbm_2 == 5 ~ 1
-  ))
+wlbm_data_reversed = wlbm_data
+
+for (col in reverse_wlbm_columns) {
+  wlbm_data_reversed[[col]] = case_when(
+    wlbm_data_reversed[[col]] == 1 ~ 5,
+    wlbm_data_reversed[[col]] == 2 ~ 4,
+    wlbm_data_reversed[[col]] == 3 ~ 3,
+    wlbm_data_reversed[[col]] == 4 ~ 2,
+    wlbm_data_reversed[[col]] == 5 ~ 1
+  )
+}
 ```
 
-#Change responses from string to integer for Copenhagen Psychosocial Questionnaire workload (COPSOQ-workload) questions
-
+# Change responses from string to integer for Copenhagen Psychosocial Questionnaire workload (COPSOQ-workload) questions
 ```{r}
 workload_data = clean_data |> 
   select(contains("copsoq_workload"), anonym_id) |> 
@@ -177,8 +181,7 @@ workload_data_reversed = workload_data |>
   ))
 ```
 
-#Change responses from string to integer for Copenhagen Psychosocial Questionnaire Social Support (COPSOQ-social-support) questions
-
+# Change responses from string to integer for Copenhagen Psychosocial Questionnaire Social Support (COPSOQ-social-support) questions
 ```{r}
 soc_support_data = clean_data |> 
   select(contains("copsoq_soc_sup"), anonym_id)
@@ -201,8 +204,7 @@ for (column in soc_support_columns) {
 #No reverse coded items
 ```
 
-#Change responses from string to integer for Copenhagen Psychosocial Questionnaire Opportunities (COPSOQ-opportunities) questions
-
+# Change responses from string to integer for Copenhagen Psychosocial Questionnaire Opportunities (COPSOQ-opportunities) questions
 ```{r}
 opportunities_data = clean_data |> 
   select(contains("copsoq_opp"), anonym_id)
@@ -224,8 +226,7 @@ for (column in opportunities_columns) {
 #No reverse coded items
 ```
 
-#Change responses from string to integer for Questionable Research Practice (QRP) questions
-
+# Change responses from string to integer for Questionable Research Practice (QRP) questions
 ```{r}
 qrp_data = clean_data |> 
   select(contains("qrp"), anonym_id)
@@ -247,8 +248,7 @@ for (column in qrp_columns) {
 #No reverse coded items
 ```
 
-#Change responses from string to integer for Copenhagen Psychosocial Questionnaire Influence (COPSOQ-influence) questions
-
+# Change responses from string to integer for Copenhagen Psychosocial Questionnaire Influence (COPSOQ-influence) questions
 ```{r}
 influence_data = clean_data |> 
   select(contains("copsoq_inf"), anonym_id)
@@ -270,8 +270,7 @@ for (column in influence_columns) {
 #No reverse coded items
 ```
 
-#Change responses from string to integer for Copenhagen Psychosocial Questionnaire Meaning (COPSOQ-Meaning) questions
-
+# Change responses from string to integer for Copenhagen Psychosocial Questionnaire Meaning (COPSOQ-Meaning) questions
 ```{r}
 meaning_data = clean_data |> 
   select(contains("copsoq_mean"), anonym_id)
@@ -293,11 +292,25 @@ for (column in meaning_columns) {
 #No reverse coded items
 ```
 
-#Change responses from string to integer for Role ambiguity and Role Conflict Scale (Role Ambiguity) questions
-
+# Change responses from string to integer for Role ambiguity and Role Conflict Scale (Role Ambiguity) questions
 ```{r}
+#Items have to be relocated first due to a mistake when importing to Qualtrics
+clean_data = clean_data |> 
+  rename(role_stressor_1 = role_ambiguity_9,
+         role_stressor_2 = role_ambiguity_5,
+         role_stressor_3 = role_ambiguity_10,
+         role_stressor_4 = role_ambiguity_6,
+         role_stressor_5 = role_ambiguity_1,
+         role_stressor_6 = role_ambiguity_4,
+         role_stressor_7 = role_ambiguity_2,
+         role_stressor_8 = role_ambiguity_7,
+         role_stressor_9 = role_ambiguity_12,
+         role_stressor_10 = role_ambiguity_3,
+         role_stressor_11 = role_ambiguity_11,
+         role_stressor_12 = role_ambiguity_8)
+
 role_stressor_data = clean_data |> 
-  select(contains("role"), anonym_id)
+  select(contains("role_stressor"), anonym_id)
 
 role_stressor_columns = role_stressor_data |> 
   select(contains("role")) |> 
@@ -316,8 +329,8 @@ for (column in role_stressor_columns) {
 }
 
 #Reverse coded items: 4, 5, 6, 10, 11, 12
-reverse_ambiguity_columns = c("role_ambiguity_4", "role_ambiguity_5", "role_ambiguity_6", 
-                              "role_ambiguity_10", "role_ambiguity_11", "role_ambiguity_12")
+reverse_ambiguity_columns = c("role_stressor_4", "role_stressor_5", "role_stressor_6", 
+                              "role_stressor_10", "role_stressor_11", "role_stressor_12")
 
 role_stressor_data_reversed = role_stressor_data
 
@@ -334,15 +347,15 @@ for (col in role_stressor_columns) {
 }
 
 role_ambiguity_data_reversed = role_stressor_data_reversed |> 
-  select(role_ambiguity_1:role_ambiguity_6, anonym_id) 
+  select(role_stressor_1:role_stressor_6, anonym_id) |> 
+  rename_with(~str_replace(., "role_stressor", "role_ambiguity"))
 
 role_conflict_data_reversed = role_stressor_data_reversed |> 
-  select(role_ambiguity_7:role_ambiguity_12, anonym_id) |> 
-  rename_with(~str_replace(., "role_ambiguity", "role_conflict"))
+  select(role_stressor_7:role_stressor_12, anonym_id) |> 
+  rename_with(~str_replace(., "role_stressor", "role_conflict"))
 ```
 
-#Change responses from string to integer for Pay Satisfaction questions
-
+# Change responses from string to integer for Pay Satisfaction questions
 ```{r}
 pay_satisfaction_data = clean_data |> 
   select(contains("pay_satisfaction"), anonym_id)
@@ -366,8 +379,7 @@ for (column in pay_satisfaction_columns) {
 #No reverse coded items
 ```
 
-#Change responses from string to integer for Tool Satisfaction questions
-
+# Change responses from string to integer for Tool Satisfaction questions 
 ```{r}
 tool_satisfaction_data = clean_data |> 
   select(contains("tool_satisfaction"), anonym_id)
@@ -391,8 +403,7 @@ for (column in tool_satisfaction_columns) {
 #No reverse coded items
 ```
 
-#Change responses from string to integer for General Satisfaction questions
-
+# Change responses from string to integer for General Satisfaction questions
 ```{r}
 general_satisfaction_data = clean_data |> 
   select(contains("general_satisfaction"), anonym_id)
@@ -416,8 +427,7 @@ for (column in general_satisfaction_columns) {
 #No reverse coded items
 ```
 
-#Change responses from string to integer for Open Research Practice (ORP) questions
-
+# Change responses from string to integer for Open Research Practice (ORP) questions
 ```{r}
 orp_data = clean_data |> 
   select(open_time, anonym_id) |> 
@@ -430,13 +440,12 @@ orp_data = clean_data |>
 #No reverse coded items
 ```
 
-#Creating script that checks for lazy responding
-
+# Creating script that checks for lazy responding
 ```{r}
 before_reverse_coding = burnout_data |> 
   left_join(ppqr_data, by = "anonym_id") |>
-  left_join(jis_data, by = "anonym_id") |>
-  left_join(wlbm_data, by = "anonym_id") |>
+  left_join(jis_data_reversed, by = "anonym_id") |>
+  left_join(wlbm_data_reversed, by = "anonym_id") |>
   left_join(workload_data, by = "anonym_id") |>
   left_join(soc_support_data, by = "anonym_id") |>
   left_join(opportunities_data, by = "anonym_id") |>
@@ -461,8 +470,7 @@ lazy_responding <- before_reverse_coding |>
 
 ```
 
-#Join datasets with identifiers
-
+# Join datasets with identifiers
 ```{r}
 survey_data = burnout_data |> 
   left_join(ppqr_stress_subscale, by = "anonym_id") |> 
@@ -485,22 +493,20 @@ survey_data = burnout_data |>
   relocate(anonym_id, .before = bat_1)
 ```
 
-#Save descriptive data in another dataframe
-
+# Save descriptive data in another dataframe
 ```{r}
 descriptive_data = clean_data |> 
   select(anonym_id, gender:phd_dissertation)
 ```
 
-#Save conditional data
-
+# Save conditional data
 ```{r}
 conditional_data = clean_data |> 
   select(anonym_id, finished, research_yes_no, academic_yes_no, consent, attention) |> 
   left_join(select(lazy_responding, anonym_id, lazy_responding), by = "anonym_id")
 ```
 
-#Join descriptive and survey data
+# Join descriptive and survey data
 
 ```{r}
 processed_data = survey_data |> 
@@ -508,8 +514,7 @@ processed_data = survey_data |>
   left_join(conditional_data, by = "anonym_id")
 ```
 
-#Save data
-
+# Save data
 ```{r}
 write.csv(survey_data, here::here("data/survey_data.csv"), row.names = FALSE)
 write.csv(descriptive_data, here::here("data/descriptive_data.csv"), row.names = FALSE)

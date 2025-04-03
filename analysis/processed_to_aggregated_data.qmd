@@ -38,7 +38,7 @@ processed_filtered = processed |>
 #Aggregating data
 
 ```{r}
-surveys = c("bat", "ppqr_stress", "ppqr_attitude", "ppqr_resource", "copsoq_workload", "copsoq_soc_sup", "copsoq_oppor",
+surveys = c("bat", "ppqr_stress", "ppqr_attitude", "ppqr_resource", "copsoq_workload", "copsoq_soc_sup", "copsoq_oppor", "wlbm", "jis",
             "qrp_attitude", "copsoq_infl", "copsoq_meaning", "role_ambiguity", "role_conflict",
             "pay_satisfaction", "tool_satisfaction", "general_satisfaction", "open_practice")
 
@@ -104,7 +104,9 @@ aggregated_data_final = aggregated_data |>
          pay_satisfaction = pay_satisfaction_total,
          tool_satisfaction = tool_satisfaction_total,
          general_satisfaction = general_satisfaction_total,
-         open_practice = open_practice_total)
+         open_practice = open_practice_total,
+         job_security = jis_total,
+         work_life_balance = wlbm_total)
 ```
 
 #Save data

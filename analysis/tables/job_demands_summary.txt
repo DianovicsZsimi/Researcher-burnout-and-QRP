@@ -1,0 +1,72 @@
+lavaan 0.6-19 ended normally after 30 iterations
+
+  Estimator                                         ML
+  Optimization method                           NLMINB
+  Number of model parameters                        12
+
+  Number of observations                            24
+
+Model Test User Model:
+                                                      
+  Test statistic                                62.570
+  Degrees of freedom                                 9
+  P-value (Chi-square)                           0.000
+
+Model Test Baseline Model:
+
+  Test statistic                                86.306
+  Degrees of freedom                                15
+  P-value                                        0.000
+
+User Model versus Baseline Model:
+
+  Comparative Fit Index (CFI)                    0.249
+  Tucker-Lewis Index (TLI)                      -0.252
+
+Loglikelihood and Information Criteria:
+
+  Loglikelihood user model (H0)               -392.112
+  Loglikelihood unrestricted model (H1)       -360.827
+                                                      
+  Akaike (AIC)                                 808.224
+  Bayesian (BIC)                               822.361
+  Sample-size adjusted Bayesian (SABIC)        785.185
+
+Root Mean Square Error of Approximation:
+
+  RMSEA                                          0.498
+  90 Percent confidence interval - lower         0.386
+  90 Percent confidence interval - upper         0.618
+  P-value H_0: RMSEA <= 0.050                    0.000
+  P-value H_0: RMSEA >= 0.080                    1.000
+
+Standardized Root Mean Square Residual:
+
+  SRMR                                           0.260
+
+Parameter Estimates:
+
+  Standard errors                             Standard
+  Information                                 Expected
+  Information saturated (h1) model          Structured
+
+Latent Variables:
+                   Estimate  Std.Err  z-value  P(>|z|)
+  job_demands =~                                      
+    workload          2.291    0.669    3.425    0.001
+    pub_prssr_tttd    1.431    0.779    1.837    0.066
+    pb_prssr_strss    1.651    0.677    2.440    0.015
+    role_ambiguity   -0.539    0.851   -0.633    0.527
+    role_conflict     0.082    1.005    0.081    0.935
+    work_life_blnc    5.327    1.176    4.529    0.000
+
+Variances:
+                   Estimate  Std.Err  z-value  P(>|z|)
+   .workload          5.292    2.192    2.415    0.016
+   .pub_prssr_tttd   11.602    3.447    3.366    0.001
+   .pb_prssr_strss    7.879    2.442    3.226    0.001
+   .role_ambiguity   15.348    4.441    3.456    0.001
+   .role_conflict    21.658    6.252    3.464    0.001
+   .work_life_blnc    4.150    8.470    0.490    0.624
+    job_demands       1.000                           
+

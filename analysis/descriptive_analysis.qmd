@@ -83,6 +83,7 @@ phd = data |>
 # Survey statistics
 
 ## Distribution
+
 ```{r}
 library(rlang)
 
@@ -110,7 +111,9 @@ for (i in survey){
 ```
 
 ## Deeper look at QRP attitude scale
+
 ### As other scales are validated and reliable, we will focus on QRP attitude scale
+
 ```{r}
 processed = read_csv(here::here("data/processed_data.csv"))
 qrp_data = processed |> 
@@ -160,6 +163,7 @@ qrp_distribution = qrp_data |>
 ```
 
 # Checking correlation between variables to see redundancies
+
 ```{r}
 cor_data = data |> 
   select(burnout:open_practice) |> 
@@ -178,4 +182,3 @@ correlations = correlations |>
 
 #Nothing is above 0.8 yet
 ```
-

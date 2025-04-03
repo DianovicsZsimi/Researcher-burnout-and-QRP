@@ -14,6 +14,8 @@ format: html
 library(tidyverse)
 library(here)
 library(ggplot2)
+library(lavaan)
+library(semPlot)
 data_path <- here("data")
 ```
 
@@ -23,11 +25,110 @@ data_path <- here("data")
 data = read_csv(here::here("data/aggregated_data.csv"))
 ```
 
+# Assumptions for the models
+
+## Normality
+```{r}
+
+```
+
+##
+
 # Latent variables as imagined by the Job Demands-Resources Model of Burnout
+
+## Job demands and resources
+```{r}
+jdr_model = '
+  # Measurement model
+  job_demands =~ workload + pub_pressure_attitude + pub_pressure_stress + role_ambiguity + role_conflict + work_life_balance
+  job_resources =~ opportunities + meaning + influence + social_support + pay_satisfaction + tool_satisfaction + general_satisfaction + job_security + pub_pressure_resource'
+
+jdr_fit = cfa(jdr_model, data = data, std.lv = TRUE)
+summary(jdr_fit, fit.measures = TRUE, standardized = TRUE)
+```
 
 ## Job demands as latent variable
 ```{r}
-#Job demands are: 
+#Job demands are: workload, pubplication pressure_stress,, publication_pressure_attitude role stressors, work-life balance
 
+job_demands = data |>
+  select(anonym_id, workload, pub_pressure_attitude, pub_pressure_resource, pub_pressure_stress, role_ambiguity, role_conflict, work_life_balance)
+
+job_demands_latent = cfa(
+  'job_demands =~ workload + pub_pressure_attitude + pub_pressure_stress + role_ambiguity + role_conflict + work_life_balance',
+  data = job_demands,
+  std.lv = TRUE
+)
+summary(job_demands_latent, fit.measures = TRUE)
+
+summary_text <- capture.output(summary(job_demands_latent, fit.measures = TRUE))
+writeLines(summary_text, here::here("analysis/tables/job_demands_summary.txt"))
+```
+
+## Job resources as latent variable
+```{r}
+#Job resources are: opportunities, meaning, influence, social support, pay, tool, and general satisfaction, job insecurity
+
+job_resources = data |>
+  select(anonym_id, opportunities, meaning, influence, social_support, pay_satisfaction, tool_satisfaction, general_satisfaction, job_security, pub_pressure_resource)
+
+job_resources_latent = cfa(
+  'job_resources =~ opportunities + meaning + influence + social_support + pay_satisfaction + tool_satisfaction + general_satisfaction + job_security + pub_pressure_resource',
+  data = job_resources,
+  std.lv = TRUE
+)
+summary(job_resources_latent, fit.measures = TRUE)
+
+summary_text <- capture.output(summary(job_resources_latent, fit.measures = TRUE))
+writeLines(summary_text, here::here("analysis/tables/job_resources_summary.txt"))
+```
+
+## Job demands and resources plus burnout: Structural equation modeling
+```{r}
+data = data |> 
+  rename(burnout_1 = burnout)
+
+jdr_b_model = '
+  # Measurement model
+  job_demands =~ workload + pub_pressure_attitude + pub_pressure_stress + role_ambiguity + role_conflict + work_life_balance
+  job_resources =~ opportunities + meaning + influence + social_support + pay_satisfaction + tool_satisfaction + pub_pressure_resource + general_satisfaction + job_security
+  burnout =~ burnout_1
+  
+  # Structural model
+  burnout ~ job_demands + job_resources'
+
+jdr_b_fit = cfa(jdr_b_model, data = data, std.lv = TRUE)
+
+summary(jdr_b_fit, fit.measures = TRUE, standardized = TRUE)
+summary_text <- capture.output(summary(jdr_b_fit, fit.measures = TRUE))
+writeLines(summary_text, here::here("analysis/tables/jdr_burnout_fit_summary.txt"))
+
+pdf(here::here("analysis/figures/sem_plot.pdf"), width = 10, height = 8)
+semPaths(jdr_b_fit, what = "stand", layout = "tree", rotation = 2, sizeMan = 12, sizeMan2 = 6, nCharNodes = 6)
+dev.off()
+```
+
+## Exploration of questionable research practices
+```{r}
+jdr_b_qrp_model = '
+  # Measurement model
+  job_demands =~ workload + pub_pressure_attitude + pub_pressure_stress + role_ambiguity + role_conflict + work_life_balance
+  job_resources =~ opportunities + meaning + influence + social_support + pay_satisfaction + tool_satisfaction + pub_pressure_resource + general_satisfaction + job_security
+  burnout =~ burnout_1
+  qrp =~ qrp_attitude
+  
+  # Structural model
+  burnout ~ job_demands + job_resources
+  qrp ~ burnout + job_demands + job_resources'
+
+jdr_b_qrp_fit = cfa(jdr_b_qrp_model, data = data, std.lv = TRUE)
+
+summary(jdr_b_qrp_fit, fit.measures = TRUE, standardized = TRUE)
+summary_text <- capture.output(summary(jdr_b_qrp_fit, fit.measures = TRUE))
+writeLines(summary_text, here::here("analysis/tables/jdr_burnout_fit_summary.txt"))
+
+pdf(here::here("analysis/figures/sem_plot_qrp.pdf"), width = 10, height = 8)
+semPaths(jdr_b_qrp_fit, what = "stand", layout = "tree", rotation = 2, sizeMan = 6, sizeMan2 = 6, nCharNodes = 6)
+dev.off()
 ```
 
