@@ -5,7 +5,7 @@
 
 /.quarto/
 
-statistical_analysis.qmd
+analysis/statistical_analysis.qmd
 analysis/ables/*
 !analyis/tables/.gitkeep
 analysis/figures/sem_plot.pdf
