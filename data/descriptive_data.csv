@@ -1,72 +1,257 @@
 "anonym_id","gender","title","discipline","last_published","academia_length","phd_dissertation"
-1,"Non-binary / third gender","Post Doc","STEM (science, technology, engineering, mathematics)","This year","1-5 years",NA
-2,"Man","Assistant Professor","Non-STEM","This year","More than 10 years",NA
-3,"Man","Full Professor","Non-STEM","This year","More than 10 years",NA
-4,"Woman","PhD student","STEM (science, technology, engineering, mathematics)","More than 10 years ago or Never",NA,NA
-5,"Woman","PhD student","STEM (science, technology, engineering, mathematics)","This year","1-5 years","3-4 articles"
-6,"Woman","Associate Professor","Non-STEM","This year","More than 10 years",NA
-7,"Man","Assistant Professor","Non-STEM","This year","More than 10 years",NA
-8,"Man","Full Professor","Non-STEM","In the last year","More than 10 years",NA
-9,"Man","Full Professor","Non-STEM","This year","More than 10 years",NA
-10,"Woman","Post Doc","Non-STEM","This year","More than 10 years",NA
-11,"Woman","Assistant Professor","Non-STEM","This year","More than 10 years",NA
-12,"Woman","Post Doc","STEM (science, technology, engineering, mathematics)","This year","6-10 years",NA
-13,"Woman","Full Professor","Non-STEM","In the last year","More than 10 years",NA
-14,"Woman","Post Doc","Non-STEM","In the last year","6-10 years",NA
-15,"Woman","PhD student","STEM (science, technology, engineering, mathematics)","More than 10 years ago or Never",NA,NA
-16,"Woman","Assistant Professor","Non-STEM","In the last year","6-10 years",NA
-17,"Woman","PhD student","Non-STEM","This year","1-5 years","3-4 articles"
-18,"Woman","PhD student","Non-STEM","This year","1-5 years","1-2 articles"
-19,"Man","PhD student","Non-STEM","In the last 5 years","1-5 years","3-4 articles"
-20,"Woman","This does not apply to me","STEM (science, technology, engineering, mathematics)","In the last 5 years","Less than 1 year",NA
-21,NA,NA,NA,NA,NA,NA
-22,"Woman","Full Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
-23,"Man","Post Doc","Non-STEM","In the last year","More than 10 years",NA
-24,"Man","Full Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
-25,"Woman","PhD student","Non-STEM","This year","1-5 years","3-4 articles"
-26,"Woman","Post Doc","Non-STEM","This year","More than 10 years",NA
-27,"Woman","PhD student","Non-STEM","More than 10 years ago or Never",NA,NA
-28,"Woman","Associate Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
-29,"Woman","Post Doc","STEM (science, technology, engineering, mathematics)","In the last 5 years","6-10 years",NA
-30,"Man","PhD student","Non-STEM","More than 10 years ago or Never",NA,NA
-31,"Woman","This does not apply to me","Non-STEM","This year","1-5 years",NA
-32,"Man","Post Doc","Non-STEM","This year","More than 10 years",NA
-33,NA,NA,NA,NA,NA,NA
-34,NA,NA,NA,NA,NA,NA
-35,"Woman","Assistant Professor","STEM (science, technology, engineering, mathematics)","In the last year","6-10 years",NA
-36,"Woman","Post Doc","Non-STEM","In the last year","6-10 years",NA
-37,"Man","Assistant Professor","Non-STEM","This year","6-10 years",NA
-38,"Woman","PhD student","Non-STEM","More than 10 years ago or Never",NA,NA
-39,NA,NA,NA,NA,NA,NA
-40,NA,NA,NA,NA,NA,NA
-41,"Woman","Post Doc","STEM (science, technology, engineering, mathematics)","This year","1-5 years",NA
-42,"Woman","This does not apply to me","Non-STEM","This year","More than 10 years",NA
+1,"Woman","Full Professor","Non-STEM","This year","More than 10 years",NA
+2,NA,NA,NA,NA,NA,NA
+3,"Man","Associate Professor","STEM (science, technology, engineering, mathematics)","In the last year","6-10 years",NA
+4,NA,NA,NA,NA,NA,NA
+5,NA,NA,NA,NA,NA,NA
+6,NA,NA,NA,NA,NA,NA
+7,"Woman","Post Doc","Non-STEM","This year","More than 10 years",NA
+8,"Woman","Associate Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+9,"Man","Associate Professor","STEM (science, technology, engineering, mathematics)","In the last year","More than 10 years",NA
+10,NA,NA,NA,NA,NA,NA
+11,"Woman","Full Professor","Non-STEM","This year","More than 10 years",NA
+12,"Woman","Associate Professor","Non-STEM","This year","More than 10 years",NA
+13,"Woman","Post Doc","Non-STEM","In the last year","6-10 years",NA
+14,"Man","PhD student","STEM (science, technology, engineering, mathematics)","This year","1-5 years","3-4 articles"
+15,"Man","Associate Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+16,"Man","PhD student","STEM (science, technology, engineering, mathematics)","In the last year","1-5 years","1-2 articles"
+17,"Woman","PhD student","STEM (science, technology, engineering, mathematics)","This year","6-10 years","3-4 articles"
+18,NA,NA,NA,NA,NA,NA
+19,"Woman","Post Doc","Non-STEM","This year","6-10 years",NA
+20,"Woman","Post Doc","Non-STEM","This year","6-10 years",NA
+21,"Woman","PhD student","STEM (science, technology, engineering, mathematics)","This year","1-5 years","1-2 articles"
+22,"Man","Associate Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+23,"Woman","Associate Professor","Non-STEM","This year","More than 10 years",NA
+24,"Man","Assistant Professor","STEM (science, technology, engineering, mathematics)","This year","6-10 years",NA
+25,"Woman","PhD student","STEM (science, technology, engineering, mathematics)","This year","1-5 years","More than 4 articles"
+26,"Woman","Associate Professor","STEM (science, technology, engineering, mathematics)","In the last year","More than 10 years",NA
+27,"Woman","Associate Professor","Non-STEM","This year","6-10 years",NA
+28,"Woman","Post Doc","Non-STEM","This year","1-5 years",NA
+29,"Man","Associate Professor","STEM (science, technology, engineering, mathematics)","In the last year","More than 10 years",NA
+30,"Woman","Associate Professor","Non-STEM","This year","More than 10 years",NA
+31,"Woman","Assistant Professor","Non-STEM","This year","More than 10 years",NA
+32,"Man","Full Professor","STEM (science, technology, engineering, mathematics)","More than 10 years ago or Never",NA,NA
+33,"Man","PhD student","STEM (science, technology, engineering, mathematics)","This year","1-5 years","1-2 articles"
+34,"Man","Full Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+35,"Woman","Associate Professor","Non-STEM","In the last year","More than 10 years",NA
+36,"Man","Full Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+37,"Woman","Post Doc","STEM (science, technology, engineering, mathematics)","This year","1-5 years",NA
+38,"Woman","Full Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+39,"Woman","This does not apply to me","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+40,"Woman","Assistant Professor","Non-STEM","In the last year","6-10 years",NA
+41,"Man","Full Professor","Non-STEM","This year","More than 10 years",NA
+42,"Man","PhD student","STEM (science, technology, engineering, mathematics)","In the last year","1-5 years","1-2 articles"
 43,"Woman","Associate Professor","Non-STEM","This year","More than 10 years",NA
-44,"Woman","Full Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+44,"Man","Full Professor","Non-STEM","This year","More than 10 years",NA
 45,NA,NA,NA,NA,NA,NA
 46,"Man","Full Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
-47,"Woman","Associate Professor","Non-STEM","This year","6-10 years",NA
-48,"Man","PhD student","STEM (science, technology, engineering, mathematics)","This year","1-5 years","I don't know/ This does not apply to me/ 0 articles"
-49,"Woman","Full Professor","Non-STEM","This year","More than 10 years",NA
-50,"Woman","Assistant Professor","Non-STEM","This year","6-10 years",NA
-51,"Man","PhD student","STEM (science, technology, engineering, mathematics)","This year","1-5 years","I don't know/ This does not apply to me/ 0 articles"
-52,"Woman","Full Professor","STEM (science, technology, engineering, mathematics)","This year","1-5 years",NA
-53,"Woman","Associate Professor","STEM (science, technology, engineering, mathematics)","In the last 5 years","More than 10 years",NA
-54,NA,NA,NA,NA,NA,NA
-55,NA,NA,NA,NA,NA,NA
-56,"Woman","Assistant Professor","STEM (science, technology, engineering, mathematics)","In the last year","More than 10 years",NA
-57,"Man","Assistant Professor","STEM (science, technology, engineering, mathematics)","This year","1-5 years",NA
-58,"Woman","Associate Professor","Non-STEM","In the last year","More than 10 years",NA
-59,"Woman","Associate Professor","STEM (science, technology, engineering, mathematics)","In the last year","More than 10 years",NA
+47,"Man","Associate Professor","Non-STEM","This year","More than 10 years",NA
+48,"Man","Full Professor","Non-STEM","In the last year","More than 10 years",NA
+49,"Man","Associate Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+50,"Woman","PhD student","Non-STEM","This year","1-5 years","1-2 articles"
+51,"Man","PhD student","Non-STEM","This year","1-5 years","I don't know/ This does not apply to me/ 0 articles"
+52,"Woman","Full Professor","Non-STEM","This year","More than 10 years",NA
+53,"Woman","Assistant Professor","STEM (science, technology, engineering, mathematics)","This year","6-10 years",NA
+54,"Man","Full Professor","Non-STEM","This year","More than 10 years",NA
+55,"Woman","PhD student","STEM (science, technology, engineering, mathematics)","In the last year","1-5 years","1-2 articles"
+56,"Man","Full Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+57,"Woman","Full Professor","Non-STEM","This year","More than 10 years",NA
+58,"Woman","PhD student","Non-STEM","This year","1-5 years","1-2 articles"
+59,"Prefer not to say","PhD student","Non-STEM","In the last year","6-10 years","More than 4 articles"
 60,NA,NA,NA,NA,NA,NA
-61,NA,NA,NA,NA,NA,NA
-62,"Man","Associate Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
-63,"Man","Post Doc","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
-64,"Prefer not to say","Full Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
-65,"Man","Full Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
-66,"Man","Full Professor","Non-STEM","This year","More than 10 years",NA
-67,"Woman","Full Professor","Non-STEM","In the last year","More than 10 years",NA
-68,"Man","This does not apply to me","STEM (science, technology, engineering, mathematics)","This year","6-10 years",NA
-69,"Woman","Associate Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
-70,"Man","Associate Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
-71,"Man","Full Professor","Non-STEM","This year","More than 10 years",NA
+61,"Woman","Associate Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+62,"Man","Post Doc","STEM (science, technology, engineering, mathematics)","This year","6-10 years",NA
+63,"Woman","Full Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+64,"Man","Associate Professor","Non-STEM","In the last 10 years","6-10 years",NA
+65,"Woman","Post Doc","Non-STEM","In the last year","6-10 years",NA
+66,"Woman","PhD student","STEM (science, technology, engineering, mathematics)","This year","1-5 years","1-2 articles"
+67,"Woman","PhD student","Non-STEM","This year","1-5 years","3-4 articles"
+68,"Man","Post Doc","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+69,"Man","Full Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+70,"Woman","PhD student","STEM (science, technology, engineering, mathematics)","In the last year","1-5 years","3-4 articles"
+71,NA,NA,NA,NA,NA,NA
+72,"Woman","Assistant Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+73,NA,NA,NA,NA,NA,NA
+74,"Woman","Full Professor","Non-STEM","This year","More than 10 years",NA
+75,"Man","Associate Professor","Non-STEM","This year","More than 10 years",NA
+76,NA,NA,NA,NA,NA,NA
+77,NA,NA,NA,NA,NA,NA
+78,"Man","Full Professor","Non-STEM","This year","More than 10 years",NA
+79,"Man","Full Professor","Non-STEM","In the last year","More than 10 years",NA
+80,"Man","This does not apply to me","Non-STEM","This year","6-10 years",NA
+81,"Man","PhD student","Non-STEM","This year","1-5 years","3-4 articles"
+82,NA,NA,NA,NA,NA,NA
+83,NA,NA,NA,NA,NA,NA
+84,NA,NA,NA,NA,NA,NA
+85,NA,NA,NA,NA,NA,NA
+86,"Woman","Assistant Professor","Non-STEM","This year","6-10 years",NA
+87,"Woman","Associate Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+88,"Woman","Assistant Professor","Non-STEM","This year","6-10 years",NA
+89,"Man","PhD student","Non-STEM","This year","1-5 years","3-4 articles"
+90,"Woman","Assistant Professor","STEM (science, technology, engineering, mathematics)","In the last year","6-10 years",NA
+91,"Man","Full Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+92,"Man","Post Doc","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+93,"Man","Associate Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+94,"Man","Post Doc","Non-STEM","This year","1-5 years",NA
+95,"Man","Associate Professor","Non-STEM","In the last year","More than 10 years",NA
+96,"Woman","Full Professor","STEM (science, technology, engineering, mathematics)","More than 10 years ago or Never",NA,NA
+97,"Woman","Associate Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+98,"Woman","Full Professor","STEM (science, technology, engineering, mathematics)","In the last year","1-5 years",NA
+99,"Woman","Associate Professor","Non-STEM","In the last year","More than 10 years",NA
+100,"Woman","Post Doc","STEM (science, technology, engineering, mathematics)","This year","1-5 years",NA
+101,"Woman","PhD student","Non-STEM","This year","1-5 years","I don't know/ This does not apply to me/ 0 articles"
+102,"Woman","Full Professor","STEM (science, technology, engineering, mathematics)","In the last year","More than 10 years",NA
+103,"Woman","Assistant Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+104,"Woman","Full Professor","STEM (science, technology, engineering, mathematics)","In the last year","More than 10 years",NA
+105,"Woman","Full Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+106,"Woman","Associate Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+107,NA,NA,NA,NA,NA,NA
+108,"Man","This does not apply to me","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+109,"Man","Full Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+110,"Woman","Assistant Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+111,"Woman","Associate Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+112,"Woman","Post Doc","Non-STEM","This year","6-10 years",NA
+113,"Man","Assistant Professor","Non-STEM","This year","More than 10 years",NA
+114,"Woman","Assistant Professor","STEM (science, technology, engineering, mathematics)","In the last year","6-10 years",NA
+115,"Woman","Associate Professor","Non-STEM","This year","More than 10 years",NA
+116,"Woman","Post Doc","STEM (science, technology, engineering, mathematics)","In the last year","6-10 years",NA
+117,"Non-binary / third gender","Assistant Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+118,"Woman","Assistant Professor","STEM (science, technology, engineering, mathematics)","This year","6-10 years",NA
+119,"Woman","PhD student","STEM (science, technology, engineering, mathematics)","This year","1-5 years","More than 4 articles"
+120,"Man","Assistant Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+121,"Man","Full Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+122,"Woman","Full Professor","Non-STEM","This year","More than 10 years",NA
+123,"Woman","Full Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+124,"Man","Full Professor","Non-STEM","This year","More than 10 years",NA
+125,"Man","Assistant Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+126,"Man","Assistant Professor","STEM (science, technology, engineering, mathematics)","In the last year","More than 10 years",NA
+127,"Woman","Assistant Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+128,"Man","Full Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+129,"Man","Assistant Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+130,"Man","Associate Professor","STEM (science, technology, engineering, mathematics)","In the last 5 years","More than 10 years",NA
+131,"Woman","Full Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+132,"Man","PhD student","STEM (science, technology, engineering, mathematics)","In the last year","1-5 years","3-4 articles"
+133,"Woman","Assistant Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+134,"Man","This does not apply to me","STEM (science, technology, engineering, mathematics)","This year","6-10 years",NA
+135,"Man","Post Doc","Non-STEM","In the last year","More than 10 years",NA
+136,"Man","Full Professor",NA,"This year","More than 10 years",NA
+137,"Woman","This does not apply to me","Non-STEM","In the last year","More than 10 years",NA
+138,"Woman","Associate Professor","STEM (science, technology, engineering, mathematics)","In the last year","More than 10 years",NA
+139,"Woman","Assistant Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+140,"Woman","PhD student","STEM (science, technology, engineering, mathematics)","In the last year","1-5 years","I don't know/ This does not apply to me/ 0 articles"
+141,"Woman","Assistant Professor","STEM (science, technology, engineering, mathematics)","In the last year","6-10 years",NA
+142,"Man","Post Doc","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+143,"Woman","Associate Professor","STEM (science, technology, engineering, mathematics)","In the last year","More than 10 years",NA
+144,"Man","Full Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+145,"Woman","PhD student","Non-STEM","This year","1-5 years","1-2 articles"
+146,"Woman","Assistant Professor","Non-STEM","This year","More than 10 years",NA
+147,"Man","Full Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+148,"Man","Assistant Professor","Non-STEM","In the last year","More than 10 years",NA
+149,"Man","Full Professor","Non-STEM","This year","More than 10 years",NA
+150,"Man","Post Doc","STEM (science, technology, engineering, mathematics)","This year","1-5 years",NA
+151,NA,NA,NA,NA,NA,NA
+152,"Man","PhD student","Non-STEM","In the last year","1-5 years","3-4 articles"
+153,"Man","Full Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+154,NA,NA,NA,NA,NA,NA
+155,"Woman","PhD student","Non-STEM","This year","6-10 years","3-4 articles"
+156,"Man","Associate Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+157,"What is your gender?","Your current academic title","Which academic discipline do you work in?","When was the last time you published a scientific article in a peer reviewed journal?","How long have you been in academia, starting from the first year of PhD?","As a PhD student, how many articles are required of you to publish to achieve your dissertation?"
+158,"{""ImportId"":""QID1""}","{""ImportId"":""QID2""}","{""ImportId"":""QID21""}","{""ImportId"":""QID3""}","{""ImportId"":""QID9""}","{""ImportId"":""QID16""}"
+159,"Non-binary / third gender","Post Doc","STEM (science, technology, engineering, mathematics)","This year","1-5 years",NA
+160,"Man","Assistant Professor","Non-STEM","This year","More than 10 years",NA
+161,"Man","Full Professor","Non-STEM","This year","More than 10 years",NA
+162,"Woman","PhD student","STEM (science, technology, engineering, mathematics)","More than 10 years ago or Never",NA,NA
+163,"Woman","PhD student","STEM (science, technology, engineering, mathematics)","This year","1-5 years","3-4 articles"
+164,"Woman","Associate Professor","Non-STEM","This year","More than 10 years",NA
+165,"Man","Assistant Professor","Non-STEM","This year","More than 10 years",NA
+166,"Man","Full Professor","Non-STEM","In the last year","More than 10 years",NA
+167,"Man","Full Professor","Non-STEM","This year","More than 10 years",NA
+168,"Woman","Post Doc","Non-STEM","This year","More than 10 years",NA
+169,"Woman","Assistant Professor","Non-STEM","This year","More than 10 years",NA
+170,"Woman","Post Doc","STEM (science, technology, engineering, mathematics)","This year","6-10 years",NA
+171,"Woman","Full Professor","Non-STEM","In the last year","More than 10 years",NA
+172,"Woman","Post Doc","Non-STEM","In the last year","6-10 years",NA
+173,"Woman","PhD student","STEM (science, technology, engineering, mathematics)","More than 10 years ago or Never",NA,NA
+174,"Woman","Assistant Professor","Non-STEM","In the last year","6-10 years",NA
+175,"Woman","PhD student","Non-STEM","This year","1-5 years","3-4 articles"
+176,"Woman","PhD student","Non-STEM","This year","1-5 years","1-2 articles"
+177,"Man","PhD student","Non-STEM","In the last 5 years","1-5 years","3-4 articles"
+178,"Woman","This does not apply to me","STEM (science, technology, engineering, mathematics)","In the last 5 years","Less than 1 year",NA
+179,NA,NA,NA,NA,NA,NA
+180,"Woman","Full Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+181,"Man","Post Doc","Non-STEM","In the last year","More than 10 years",NA
+182,"Man","Full Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+183,"Woman","PhD student","Non-STEM","This year","1-5 years","3-4 articles"
+184,"Woman","Post Doc","Non-STEM","This year","More than 10 years",NA
+185,"Woman","PhD student","Non-STEM","More than 10 years ago or Never",NA,NA
+186,"Woman","Associate Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+187,"Woman","Post Doc","STEM (science, technology, engineering, mathematics)","In the last 5 years","6-10 years",NA
+188,"Man","PhD student","Non-STEM","More than 10 years ago or Never",NA,NA
+189,"Woman","This does not apply to me","Non-STEM","This year","1-5 years",NA
+190,"Man","Post Doc","Non-STEM","This year","More than 10 years",NA
+191,NA,NA,NA,NA,NA,NA
+192,NA,NA,NA,NA,NA,NA
+193,"Woman","Assistant Professor","STEM (science, technology, engineering, mathematics)","In the last year","6-10 years",NA
+194,"Woman","Post Doc","Non-STEM","In the last year","6-10 years",NA
+195,"Man","Assistant Professor","Non-STEM","This year","6-10 years",NA
+196,"Woman","PhD student","Non-STEM","More than 10 years ago or Never",NA,NA
+197,NA,NA,NA,NA,NA,NA
+198,NA,NA,NA,NA,NA,NA
+199,"Woman","Post Doc","STEM (science, technology, engineering, mathematics)","This year","1-5 years",NA
+200,"Woman","This does not apply to me","Non-STEM","This year","More than 10 years",NA
+201,"Woman","Associate Professor","Non-STEM","This year","More than 10 years",NA
+202,"Woman","Full Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+203,NA,NA,NA,NA,NA,NA
+204,"Man","Full Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+205,"Woman","Associate Professor","Non-STEM","This year","6-10 years",NA
+206,"Man","PhD student","STEM (science, technology, engineering, mathematics)","This year","1-5 years","I don't know/ This does not apply to me/ 0 articles"
+207,"Woman","Full Professor","Non-STEM","This year","More than 10 years",NA
+208,"Woman","Assistant Professor","Non-STEM","This year","6-10 years",NA
+209,"Man","PhD student","STEM (science, technology, engineering, mathematics)","This year","1-5 years","I don't know/ This does not apply to me/ 0 articles"
+210,"Woman","Full Professor","STEM (science, technology, engineering, mathematics)","This year","1-5 years",NA
+211,"Woman","Associate Professor","STEM (science, technology, engineering, mathematics)","In the last 5 years","More than 10 years",NA
+212,NA,NA,NA,NA,NA,NA
+213,NA,NA,NA,NA,NA,NA
+214,"Woman","Assistant Professor","STEM (science, technology, engineering, mathematics)","In the last year","More than 10 years",NA
+215,"Man","Assistant Professor","STEM (science, technology, engineering, mathematics)","This year","1-5 years",NA
+216,"Woman","Associate Professor","Non-STEM","In the last year","More than 10 years",NA
+217,"Woman","Associate Professor","STEM (science, technology, engineering, mathematics)","In the last year","More than 10 years",NA
+218,NA,NA,NA,NA,NA,NA
+219,NA,NA,NA,NA,NA,NA
+220,"Man","Associate Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+221,"Man","Post Doc","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+222,"Prefer not to say","Full Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+223,"Man","Full Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+224,"Man","Full Professor","Non-STEM","This year","More than 10 years",NA
+225,"Woman","Full Professor","Non-STEM","In the last year","More than 10 years",NA
+226,"Man","This does not apply to me","STEM (science, technology, engineering, mathematics)","This year","6-10 years",NA
+227,"Woman","Associate Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+228,"Man","Associate Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+229,"Man","Full Professor","Non-STEM","This year","More than 10 years",NA
+230,"Woman","Associate Professor","Non-STEM","This year","More than 10 years",NA
+231,NA,NA,NA,NA,NA,NA
+232,"Woman","Associate Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+233,"Woman","Associate Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+234,"Woman","Full Professor","Non-STEM","This year","More than 10 years",NA
+235,"Man","Assistant Professor","Non-STEM","This year","6-10 years",NA
+236,"Woman","Full Professor","STEM (science, technology, engineering, mathematics)","In the last year","More than 10 years",NA
+237,"Man","Associate Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+238,"Woman","Assistant Professor","STEM (science, technology, engineering, mathematics)","This year","6-10 years",NA
+239,NA,NA,NA,NA,NA,NA
+240,"Woman","PhD student","STEM (science, technology, engineering, mathematics)","In the last year","1-5 years","3-4 articles"
+241,"Man","Full Professor","Non-STEM","In the last year","More than 10 years",NA
+242,"Woman","Full Professor","Non-STEM","In the last year","More than 10 years",NA
+243,"Man","Assistant Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+244,"Woman","Full Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+245,"Woman","Full Professor","STEM (science, technology, engineering, mathematics)","In the last year","More than 10 years",NA
+246,"Man","Full Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+247,"Man","Assistant Professor","STEM (science, technology, engineering, mathematics)","In the last year","More than 10 years",NA
+248,NA,NA,NA,NA,NA,NA
+249,"Woman","Full Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+250,"Woman","Associate Professor","Non-STEM","In the last year","More than 10 years",NA
+251,"Woman","Post Doc","Non-STEM","In the last year","6-10 years",NA
+252,NA,NA,NA,NA,NA,NA
+253,"Woman","Assistant Professor","STEM (science, technology, engineering, mathematics)","This year","More than 10 years",NA
+254,"Woman","Associate Professor","Non-STEM","In the last year","More than 10 years",NA
+255,"Woman","Associate Professor","Non-STEM","This year","More than 10 years",NA
+256,NA,NA,NA,NA,NA,NA

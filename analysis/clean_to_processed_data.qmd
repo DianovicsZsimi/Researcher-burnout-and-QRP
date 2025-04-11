@@ -71,7 +71,47 @@ ppqr_resources_subscale = ppqr_data |>
   select(ppqr_13:ppqr_18, anonym_id) |> 
   rename_with(~str_replace(., "ppqr", "ppqr_resources"))
 
-#No reverse coded items
+#Reverse coded items for stress: 5, 6; for attitude: 11; resources: 16, 17
+
+reverse_ppqr_stress_columns = c("ppqr_stress_5", "ppqr_stress_6")
+reverse_ppqr_attitude_columns = c("ppqr_attitude_11")
+reverse_ppqr_resources_columns = c("ppqr_resources_16", "ppqr_resources_17")
+
+ppqr_stress_data_reversed = ppqr_stress_subscale
+
+for (col in reverse_ppqr_stress_columns) {
+  ppqr_stress_data_reversed[[col]] = case_when(
+    ppqr_stress_data_reversed[[col]] == 1 ~ 5,
+    ppqr_stress_data_reversed[[col]] == 2 ~ 4,
+    ppqr_stress_data_reversed[[col]] == 3 ~ 3,
+    ppqr_stress_data_reversed[[col]] == 4 ~ 2,
+    ppqr_stress_data_reversed[[col]] == 5 ~ 1
+  )
+}
+
+ppqr_attitude_data_reversed = ppqr_attitude_subscale
+
+for (col in reverse_ppqr_attitude_columns) {
+  ppqr_attitude_data_reversed[[col]] = case_when(
+    ppqr_attitude_data_reversed[[col]] == 1 ~ 5,
+    ppqr_attitude_data_reversed[[col]] == 2 ~ 4,
+    ppqr_attitude_data_reversed[[col]] == 3 ~ 3,
+    ppqr_attitude_data_reversed[[col]] == 4 ~ 2,
+    ppqr_attitude_data_reversed[[col]] == 5 ~ 1
+  )
+}
+
+ppqr_resources_data_reversed = ppqr_resources_subscale
+
+for (col in reverse_ppqr_resources_columns) {
+  ppqr_resources_data_reversed[[col]] = case_when(
+    ppqr_resources_data_reversed[[col]] == 1 ~ 5,
+    ppqr_resources_data_reversed[[col]] == 2 ~ 4,
+    ppqr_resources_data_reversed[[col]] == 3 ~ 3,
+    ppqr_resources_data_reversed[[col]] == 4 ~ 2,
+    ppqr_resources_data_reversed[[col]] == 5 ~ 1
+  )
+}
 ```
 
 # Change responses from string to integer for Job Insecurity Scale (JIS) questions
@@ -294,23 +334,29 @@ for (column in meaning_columns) {
 
 # Change responses from string to integer for Role ambiguity and Role Conflict Scale (Role Ambiguity) questions
 ```{r}
-#Items have to be relocated first due to a mistake when importing to Qualtrics
+
+#Items have to be renamed first due to a mistake when importing to Qualtrics
 clean_data = clean_data |> 
-  rename(role_stressor_1 = role_ambiguity_9,
-         role_stressor_2 = role_ambiguity_5,
-         role_stressor_3 = role_ambiguity_10,
-         role_stressor_4 = role_ambiguity_6,
-         role_stressor_5 = role_ambiguity_1,
-         role_stressor_6 = role_ambiguity_4,
-         role_stressor_7 = role_ambiguity_2,
-         role_stressor_8 = role_ambiguity_7,
-         role_stressor_9 = role_ambiguity_12,
+  rename(role_stressor_01 = role_ambiguity_9,
+         role_stressor_02 = role_ambiguity_5,
+         role_stressor_03 = role_ambiguity_10,
+         role_stressor_04 = role_ambiguity_6,
+         role_stressor_05 = role_ambiguity_1,
+         role_stressor_06 = role_ambiguity_4,
+         role_stressor_07 = role_ambiguity_2,
+         role_stressor_08 = role_ambiguity_7,
+         role_stressor_09 = role_ambiguity_12,
          role_stressor_10 = role_ambiguity_3,
          role_stressor_11 = role_ambiguity_11,
          role_stressor_12 = role_ambiguity_8)
+  
+
 
 role_stressor_data = clean_data |> 
   select(contains("role_stressor"), anonym_id)
+
+role_stressor_data = role_stressor_data |> 
+  select(order(colnames(role_stressor_data)))
 
 role_stressor_columns = role_stressor_data |> 
   select(contains("role")) |> 
@@ -329,7 +375,7 @@ for (column in role_stressor_columns) {
 }
 
 #Reverse coded items: 4, 5, 6, 10, 11, 12 
-reverse_stresor_columns = c("role_stressor_4", "role_stressor_5", "role_stressor_6", 
+reverse_stresor_columns = c("role_stressor_04", "role_stressor_05", "role_stressor_06", 
                               "role_stressor_10", "role_stressor_11", "role_stressor_12")
 
 role_stressor_data_reversed = role_stressor_data
@@ -347,12 +393,14 @@ for (col in reverse_stresor_columns) {
 }
 
 role_ambiguity_data_reversed = role_stressor_data_reversed |> 
-  select(role_stressor_1:role_stressor_6, anonym_id) |> 
+  select(role_stressor_01:role_stressor_06, anonym_id) |> 
   rename_with(~str_replace(., "role_stressor", "role_ambiguity"))
 
 role_conflict_data_reversed = role_stressor_data_reversed |> 
-  select(role_stressor_7:role_stressor_12, anonym_id) |> 
+  select(role_stressor_07:role_stressor_12, anonym_id) |> 
   rename_with(~str_replace(., "role_stressor", "role_conflict"))
+
+
 ```
 
 # Change responses from string to integer for Pay Satisfaction questions
@@ -474,9 +522,9 @@ lazy_responding <- before_reverse_coding |>
 # Join datasets with identifiers
 ```{r}
 survey_data = burnout_data |> 
-  left_join(ppqr_stress_subscale, by = "anonym_id") |> 
-  left_join(ppqr_attitude_subscale, by = "anonym_id") |> 
-  left_join(ppqr_resources_subscale, by = "anonym_id") |> 
+  left_join(ppqr_stress_data_reversed, by = "anonym_id") |> 
+  left_join(ppqr_attitude_data_reversed, by = "anonym_id") |> 
+  left_join(ppqr_resources_data_reversed, by = "anonym_id") |> 
   left_join(jis_data_reversed, by = "anonym_id") |> 
   left_join(wlbm_data_reversed, by = "anonym_id") |> 
   left_join(workload_data_reversed, by = "anonym_id") |> 

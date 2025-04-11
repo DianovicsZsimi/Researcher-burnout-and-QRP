@@ -1,72 +1,89 @@
-lavaan 0.6-19 ended normally after 45 iterations
+lavaan 0.6-19 ended normally after 33 iterations
 
   Estimator                                         ML
   Optimization method                           NLMINB
-  Number of model parameters                        12
+  Number of model parameters                        13
 
-  Number of observations                            56
+  Number of observations                           206
 
 Model Test User Model:
-                                                      
-  Test statistic                                56.484
-  Degrees of freedom                                 9
-  P-value (Chi-square)                           0.000
+                                              Standard      Scaled
+  Test Statistic                                19.349      19.116
+  Degrees of freedom                                 8           8
+  P-value (Chi-square)                           0.013       0.014
+  Scaling correction factor                                  1.012
+    Satorra-Bentler correction                                    
 
 Model Test Baseline Model:
 
-  Test statistic                               235.926
-  Degrees of freedom                                15
-  P-value                                        0.000
+  Test statistic                               408.585     389.787
+  Degrees of freedom                                15          15
+  P-value                                        0.000       0.000
+  Scaling correction factor                                  1.048
 
 User Model versus Baseline Model:
 
-  Comparative Fit Index (CFI)                    0.785
-  Tucker-Lewis Index (TLI)                       0.642
+  Comparative Fit Index (CFI)                    0.971       0.970
+  Tucker-Lewis Index (TLI)                       0.946       0.944
+                                                                  
+  Robust Comparative Fit Index (CFI)                         0.971
+  Robust Tucker-Lewis Index (TLI)                            0.946
 
 Loglikelihood and Information Criteria:
 
-  Loglikelihood user model (H0)               -928.430
-  Loglikelihood unrestricted model (H1)       -900.188
-                                                      
-  Akaike (AIC)                                1880.860
-  Bayesian (BIC)                              1905.164
-  Sample-size adjusted Bayesian (SABIC)       1867.448
+  Loglikelihood user model (H0)              -3595.625   -3595.625
+  Loglikelihood unrestricted model (H1)      -3585.951   -3585.951
+                                                                  
+  Akaike (AIC)                                7217.250    7217.250
+  Bayesian (BIC)                              7260.512    7260.512
+  Sample-size adjusted Bayesian (SABIC)       7219.323    7219.323
 
 Root Mean Square Error of Approximation:
 
-  RMSEA                                          0.307
-  90 Percent confidence interval - lower         0.233
-  90 Percent confidence interval - upper         0.386
-  P-value H_0: RMSEA <= 0.050                    0.000
-  P-value H_0: RMSEA >= 0.080                    1.000
+  RMSEA                                          0.083       0.082
+  90 Percent confidence interval - lower         0.036       0.035
+  90 Percent confidence interval - upper         0.131       0.130
+  P-value H_0: RMSEA <= 0.050                    0.110       0.115
+  P-value H_0: RMSEA >= 0.080                    0.588       0.577
+                                                                  
+  Robust RMSEA                                               0.083
+  90 Percent confidence interval - lower                     0.035
+  90 Percent confidence interval - upper                     0.131
+  P-value H_0: Robust RMSEA <= 0.050                         0.114
+  P-value H_0: Robust RMSEA >= 0.080                         0.583
 
 Standardized Root Mean Square Residual:
 
-  SRMR                                           0.178
+  SRMR                                           0.041       0.041
 
 Parameter Estimates:
 
-  Standard errors                             Standard
+  Standard errors                           Robust.sem
   Information                                 Expected
   Information saturated (h1) model          Structured
 
 Latent Variables:
                    Estimate  Std.Err  z-value  P(>|z|)
   job_demands =~                                      
-    workload          1.816    0.387    4.687    0.000
-    pub_prssr_tttd    0.394    0.619    0.637    0.524
-    pb_prssr_strss    1.048    0.514    2.040    0.041
-    role_ambiguity    6.786    0.699    9.711    0.000
-    role_conflict     7.722    0.763   10.123    0.000
-    work_life_blnc    2.301    0.654    3.519    0.000
+    workload          2.401    0.189   12.726    0.000
+    pub_prssr_tttd    1.772    0.326    5.428    0.000
+    pb_prssr_strss    4.306    0.271   15.918    0.000
+    role_ambiguity    4.439    0.520    8.542    0.000
+    role_conflict     3.518    0.490    7.177    0.000
+    work_life_blnc    3.651    0.265   13.763    0.000
+
+Covariances:
+                    Estimate  Std.Err  z-value  P(>|z|)
+ .role_ambiguity ~~                                    
+   .role_conflict     10.194    3.057    3.335    0.001
 
 Variances:
                    Estimate  Std.Err  z-value  P(>|z|)
-   .workload          6.629    1.265    5.241    0.000
-   .pub_prssr_tttd   21.079    3.984    5.291    0.000
-   .pb_prssr_strss   13.999    2.649    5.285    0.000
-   .role_ambiguity    3.107    2.084    1.491    0.136
-   .role_conflict     1.199    2.598    0.461    0.645
-   .work_life_blnc   20.935    3.974    5.269    0.000
+   .workload          4.519    0.560    8.074    0.000
+   .pub_prssr_tttd   16.785    1.851    9.068    0.000
+   .pb_prssr_strss    7.192    1.255    5.732    0.000
+   .role_ambiguity   47.741    4.371   10.921    0.000
+   .role_conflict    33.880    3.681    9.203    0.000
+   .work_life_blnc   10.123    1.380    7.333    0.000
     job_demands       1.000                           
 

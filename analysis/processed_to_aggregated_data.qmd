@@ -13,6 +13,7 @@ format: html
 ```{r}
 library(tidyverse)
 library(here)
+library(psych)
 data_path <- here("data")
 ```
 
@@ -32,20 +33,42 @@ processed_filtered = processed |>
          & research_yes_no == T
          & last_published != "More than 10 years ago or Never"
          & attention == "Passed"
-         & lazy_responding == F)
+         & lazy_responding == F
+         & complete.cases(select(processed, -phd_dissertation))
+  )
 ```
 
-#Aggregating data
-
+# Checking cronbach alpha
 ```{r}
-surveys = c("bat", "ppqr_stress", "ppqr_attitude", "ppqr_resource", "copsoq_workload", "copsoq_soc_sup", "copsoq_oppor", "wlbm", "jis",
+surveys = c("bat", "ppqr_stress", "ppqr_attitude", "ppqr_resources", "copsoq_workload", "copsoq_soc_sup", "copsoq_oppor", "wlbm", "jis",
+            "qrp_attitude", "copsoq_infl", "copsoq_meaning", "role_ambiguity", "role_conflict",
+            "pay_satisfaction", "tool_satisfaction", "general_satisfaction")
+
+alpha_function = function(data, survey){
+  data |>
+    select(starts_with(survey)) |>
+    psych::alpha() |>
+    pluck("total") |>
+    as.data.frame() |>
+    mutate(survey = survey) |> 
+    select(survey, raw_alpha)
+}
+
+cronbach_results = data.frame()
+
+for (survey in surveys){
+  alpha_result = alpha_function(processed_filtered, survey)
+  cronbach_results = rbind(cronbach_results, alpha_result)
+}
+
+write.csv(cronbach_results, here::here("analysis/tables/cronbach_alpha.csv"), row.names = FALSE)
+```
+
+# Aggregating data
+```{r}
+surveys = c("bat", "ppqr_stress", "ppqr_attitude", "ppqr_resources", "copsoq_workload", "copsoq_soc_sup", "copsoq_oppor", "wlbm", "jis",
             "qrp_attitude", "copsoq_infl", "copsoq_meaning", "role_ambiguity", "role_conflict",
             "pay_satisfaction", "tool_satisfaction", "general_satisfaction", "open_practice")
-
-# bat_aggregated <- processed_filtered |>
-#   group_by(anonym_id) |>
-#   summarize(bat_total = rowSums(across(starts_with("bat_")), na.rm = TRUE))
-
 
 aggregate_function = function(data, survey){
   data |>
@@ -92,7 +115,7 @@ aggregated_data_final = aggregated_data |>
   rename(burnout = bat_total,
          pub_pressure_stress = ppqr_stress_total,
          pub_pressure_attitude = ppqr_attitude_total,
-         pub_pressure_resource = ppqr_resource_total,
+         pub_pressure_resource = ppqr_resources_total,
          workload = copsoq_workload_total,
          social_support = copsoq_soc_sup_total,
          opportunities = copsoq_oppor_total,

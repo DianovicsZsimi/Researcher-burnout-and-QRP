@@ -15,7 +15,9 @@ library(tidyverse)
 library(here)
 library(ggplot2)
 library(lavaan)
+library(MVN)
 library(semPlot)
+library(lavaanExtra)
 data_path <- here("data")
 ```
 
@@ -29,25 +31,21 @@ data = read_csv(here::here("data/aggregated_data.csv"))
 
 ## Normality
 ```{r}
-#Use robust ML estimation
-#estimator = "MLM" or "MLMV" or "MLR"
-#se="robust.sem"
-```
+data_normality = data |> 
+  select(burnout:work_life_balance) |>
+  mutate(across(everything(), ~ as.numeric(.x)))
 
-##
+mvn(data_normality, mvnTest = "mardia", univariateTest = "SW")
+  
+
+# Use robust ML estimation
+# estimator = "MLM" or "MLMV" or "MLR"
+# se="robust.sem"
+```
 
 # Latent variables as imagined by the Job Demands-Resources Model of Burnout
 
-## Job demands and resources
-```{r}
-jdr_model = '
-  # Measurement model
-  job_demands =~ workload + pub_pressure_attitude + pub_pressure_stress + role_ambiguity + role_conflict + work_life_balance
-  job_resources =~ opportunities + meaning + influence + social_support + pay_satisfaction + tool_satisfaction + general_satisfaction + job_security + pub_pressure_resource'
-
-jdr_fit = cfa(jdr_model, data = data, std.lv = TRUE)
-summary(jdr_fit, fit.measures = TRUE, standardized = TRUE)
-```
+# Job demands and resources
 
 ## Job demands as latent variable
 ```{r}
@@ -57,14 +55,33 @@ job_demands = data |>
   select(anonym_id, workload, pub_pressure_attitude, pub_pressure_resource, pub_pressure_stress, role_ambiguity, role_conflict, work_life_balance)
 
 job_demands_latent = cfa(
-  'job_demands =~ workload + pub_pressure_attitude + pub_pressure_stress + role_ambiguity + role_conflict + work_life_balance',
+  '
+  # Measurement model
+  job_demands =~ workload + pub_pressure_attitude + pub_pressure_stress + role_ambiguity + role_conflict + work_life_balance
+  
+  # Residual correlations based on theory and expected overlap
+    role_ambiguity ~~ role_conflict
+  ',
   data = job_demands,
+  estimator = "MLM",
   std.lv = TRUE
 )
-summary(job_demands_latent, fit.measures = TRUE)
+summary(job_demands_latent, fit.measures = TRUE, standardized = TRUE, modindices = TRUE)
+
 
 summary_text <- capture.output(summary(job_demands_latent, fit.measures = TRUE))
 writeLines(summary_text, here::here("analysis/tables/job_demands_summary.txt"))
+pdf(here::here("analysis/figures/demands_cfa_plot.pdf"), width = 10, height = 8)
+semPaths(job_demands_latent, what = "std", style = "lisrel", layout = "tree", residuals = TRUE, rotation = 4, sizeMan = 12, sizeMan2 = 6, nCharNodes = 6)
+dev.off()
+
+graph_sem(job_demands_latent,
+                coefs = TRUE,
+                sig = 0.5)
+
+install.packages("tidySEM")
+library(tidySEM)
+nice_tidySEM(job_demands_latent)
 ```
 
 ## Job resources as latent variable
@@ -75,41 +92,65 @@ job_resources = data |>
   select(anonym_id, opportunities, meaning, influence, social_support, pay_satisfaction, tool_satisfaction, general_satisfaction, job_security, pub_pressure_resource)
 
 job_resources_latent = cfa(
-  'job_resources =~ opportunities + meaning + influence + social_support + pay_satisfaction + tool_satisfaction + general_satisfaction + job_security + pub_pressure_resource',
+  '
+  job_resources =~ opportunities + meaning + influence + social_support + pay_satisfaction + tool_satisfaction + general_satisfaction + job_security + pub_pressure_resource
+  
+  # Residual correlations based on theory and expected overlap
+    meaning ~~ general_satisfaction
+    pay_satisfaction ~~ tool_satisfaction
+  ',
   data = job_resources,
+  estimator = "MLM",
   std.lv = TRUE
 )
 summary(job_resources_latent, fit.measures = TRUE)
+modindices(job_resources_latent, sort = TRUE)
 
 summary_text <- capture.output(summary(job_resources_latent, fit.measures = TRUE))
 writeLines(summary_text, here::here("analysis/tables/job_resources_summary.txt"))
+
+pdf(here::here("analysis/figures/resources_cfa_plot.pdf"), width = 10, height = 8)
+semPaths(job_resources_latent, what = "stand", layout = "tree", rotation = 4, sizeMan = 12, sizeMan2 = 6, nCharNodes = 6)
+dev.off()
 ```
 
 ## Job demands and resources plus burnout: Structural equation modeling
 ```{r}
-
 jdr_b_model = '
   # Measurement model
   job_demands =~ workload + pub_pressure_attitude + pub_pressure_stress + role_ambiguity + role_conflict + work_life_balance
   job_resources =~ opportunities + meaning + influence + social_support + pay_satisfaction + tool_satisfaction + pub_pressure_resource + general_satisfaction + job_security
   
+  # Residual correlations
+  role_ambiguity ~~ role_conflict
+  pay_satisfaction ~~ tool_satisfaction
+  pay_satisfaction ~~ job_security
+  
   # Structural model
-  burnout ~ job_demands + job_resources'
+  burnout ~ job_demands + job_resources
+'
 
-jdr_b_fit = sem(jdr_b_model, data = data, std.lv = TRUE, estimator = "MLR", se = "robust.sem")
+jdr_b_fit = sem(jdr_b_model, data = data, std.lv = TRUE, estimator = "MLM", se = "robust.sem")
 
 summary(jdr_b_fit, fit.measures = TRUE, standardized = TRUE)
+modindices(job_resources_latent, sort = TRUE)
+
 summary_text <- capture.output(summary(jdr_b_fit, fit.measures = TRUE))
 writeLines(summary_text, here::here("analysis/tables/jdr_burnout_fit_summary.txt"))
 
 pdf(here::here("analysis/figures/sem_plot.pdf"), width = 10, height = 8)
-semPaths(jdr_b_fit, what = "stand", layout = "tree", rotation = 2, sizeMan = 12, sizeMan2 = 6, nCharNodes = 6)
+semPaths(jdr_b_fit, what = "stand", layout = "tree", rotation = 2)
 dev.off()
 ```
 
+# Exploration of different career stages
+
+
 ## Exploration of questionable research practices
+
+### QRP as outcome -- SEM
 ```{r}
-jdr_b_qrp_model = '
+qrp_as_outcome_model = '
   # Measurement model
   job_demands =~ workload + pub_pressure_attitude + pub_pressure_stress + role_ambiguity + role_conflict + work_life_balance
   job_resources =~ opportunities + meaning + influence + social_support + pay_satisfaction + tool_satisfaction + pub_pressure_resource + general_satisfaction + job_security
@@ -118,14 +159,34 @@ jdr_b_qrp_model = '
   burnout ~ job_demands + job_resources
   qrp_attitude ~ burnout'
 
-jdr_b_qrp_fit = sem(jdr_b_qrp_model, data = data, std.lv = TRUE, estimator = "MLR", se = "robust.sem")
+qrp_as_outcome_fit = sem(qrp_as_outcome_model, data = data, std.lv = TRUE, estimator = "MLR", se = "robust.sem")
 
-summary(jdr_b_qrp_fit, fit.measures = TRUE, standardized = TRUE)
-summary_text <- capture.output(summary(jdr_b_qrp_fit, fit.measures = TRUE))
-writeLines(summary_text, here::here("analysis/tables/jdr_burnout_fit_summary.txt"))
+summary(qrp_as_outcome_fit, fit.measures = TRUE, standardized = TRUE)
+summary_text <- capture.output(summary(qrp_as_outcome_fit, fit.measures = TRUE))
+writeLines(summary_text, here::here("analysis/tables/sem_qrp_outcome_fit_summary.txt"))
 
-pdf(here::here("analysis/figures/sem_plot_qrp.pdf"), width = 10, height = 8)
-semPaths(jdr_b_qrp_fit, what = "stand", layout = "tree", rotation = 2, sizeMan = 6, sizeMan2 = 6, nCharNodes = 6)
+pdf(here::here("analysis/figures/sem_qrp_outcome.pdf"), width = 10, height = 8)
+semPaths(qrp_as_outcome_fit, what = "stand", layout = "tree", rotation = 2, sizeMan = 6, sizeMan2 = 6, nCharNodes = 6)
 dev.off()
 ```
 
+### QRP as outcome -- linear regression
+```{r}
+qrp_regression_model = lm(qrp_attitude ~  burnout + workload + pub_pressure_attitude + pub_pressure_stress + role_ambiguity + role_conflict + work_life_balance + opportunities + meaning + influence + social_support + pay_satisfaction + tool_satisfaction + pub_pressure_resource + general_satisfaction + job_security, data = data)
+
+summary(qrp_regression_model)
+
+#Plot
+qrp_regression_plot = ggplot(data, aes(x = burnout, y = qrp_attitude)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(title = "QRP as outcome", x = "Burnout", y = "QRP") +
+  theme_minimal()
+```
+
+# distirubution for qrp
+```{r}
+qrp_distribution = data |> 
+  ggplot(aes(x = qrp_attitude)) +
+  geom_bar()
+```

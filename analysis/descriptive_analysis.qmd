@@ -13,6 +13,7 @@ format: html
 library(tidyverse)
 library(here)
 library(ggplot2)
+library(rlang)
 data_path <- here("data")
 ```
 
@@ -78,6 +79,26 @@ phd = data |>
   filter(title == "PhD student") |> 
   group_by(phd_dissertation) |> 
   summarise(n = n())
+
+```
+
+## Save each data as csv
+```{r}
+tables <- list(
+  n = n,
+  title = title,
+  gender = gender,
+  discipline = discipline,
+  last_published = last_published,
+  academia_length = academia_length,
+  phd = phd
+)
+folder_path <- "analysis/tables/"
+
+for (name in names(tables)) {
+  file_name <- paste0(folder_path, name, ".csv")
+  write.csv(tables[[name]], here::here(file_name), row.names = FALSE)
+}
 ```
 
 # Survey statistics
@@ -85,12 +106,10 @@ phd = data |>
 ## Distribution
 
 ```{r}
-library(rlang)
-
 survey = c("burnout", "influence", "meaning", "opportunities", "social_support", "workload",
            "general_satisfaction", "open_practice", "pay_satisfaction", "tool_satisfaction",
            "qrp_attitude", "role_conflict", "role_ambiguity", "pub_pressure_stress",
-           "pub_pressure_attitude", "pub_pressure_resource")
+           "pub_pressure_attitude", "pub_pressure_resource", "work_life_balance", "job_security")
 
 
 distribution = function(data, survey){
@@ -107,7 +126,32 @@ for (i in survey){
   assign(paste0(i, "_distribution"), distribution(data, i))
 }
 
-#Introduce range based on survey min and max
+summary_stats <- data.frame()
+
+# Loop through each variable
+for (s in survey) {
+  scores <- data[[s]]
+  
+  # Calculate statistics
+  mean_val <- mean(scores, na.rm = TRUE)
+  sd_val <- sd(scores, na.rm = TRUE)
+  se_val <- sd_val / sqrt(sum(!is.na(scores)))
+  shapiro <- tryCatch({
+    shapiro.test(scores)$p.value
+  }, error = function(e) NA)
+  
+
+  # Add to summary table
+  summary_stats <- rbind(summary_stats, data.frame(
+    survey = s,
+    mean = mean_val,
+    sd = sd_val,
+    se = se_val,
+    shapiro = shapiro
+  ))
+}
+
+write.csv(summary_stats, here::here("analysis/tables/summary_stats.csv"), row.names = FALSE)
 ```
 
 ## Deeper look at QRP attitude scale
@@ -116,6 +160,15 @@ for (i in survey){
 
 ```{r}
 processed = read_csv(here::here("data/processed_data.csv"))
+processed = processed |> 
+   filter(finished == T 
+         & consent == T 
+         & academic_yes_no == T
+         & research_yes_no == T
+         & last_published != "More than 10 years ago or Never"
+         & attention == "Passed"
+         & lazy_responding == F)
+
 qrp_data = processed |> 
   select(anonym_id, qrp_attitude_1:qrp_attitude_8) |> 
   left_join(select(data, anonym_id, qrp_attitude), by = "anonym_id")
@@ -147,12 +200,12 @@ correlation = qrp_data |>
   cor(use = "complete.obs")
 
 #Check floor effects
-## Floor effects are present when more than 30% of the participants score the lowest possible score (researcher decision)
+## Floor effects are present when more than 40% of the participants score the lowest possible score (researcher decision)
 floor_effects = qrp_data |> 
   select(qrp_attitude_1:qrp_attitude_8) |> 
   summarise_all(~sum(.x == 1, na.rm = TRUE)/n()) |>
   pivot_longer(cols = everything(), names_to = "question", values_to = "lowest_response") |>
-  mutate(floor_effect = ifelse(lowest_response > 0.3, "Yes", "No"))
+  mutate(floor_effect = ifelse(lowest_response > 0.4, "Yes", "No"))
 
 #Distribution for questionnaire
 qrp_distribution = qrp_data |> 

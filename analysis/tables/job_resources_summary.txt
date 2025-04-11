@@ -1,78 +1,97 @@
-lavaan 0.6-19 ended normally after 26 iterations
+lavaan 0.6-19 ended normally after 39 iterations
 
   Estimator                                         ML
   Optimization method                           NLMINB
-  Number of model parameters                        18
+  Number of model parameters                        20
 
-  Number of observations                            56
+  Number of observations                           206
 
 Model Test User Model:
-                                                      
-  Test statistic                                71.970
-  Degrees of freedom                                27
-  P-value (Chi-square)                           0.000
+                                              Standard      Scaled
+  Test Statistic                                62.338      55.937
+  Degrees of freedom                                25          25
+  P-value (Chi-square)                           0.000       0.000
+  Scaling correction factor                                  1.114
+    Satorra-Bentler correction                                    
 
 Model Test Baseline Model:
 
-  Test statistic                               206.821
-  Degrees of freedom                                36
-  P-value                                        0.000
+  Test statistic                               547.998     415.723
+  Degrees of freedom                                36          36
+  P-value                                        0.000       0.000
+  Scaling correction factor                                  1.318
 
 User Model versus Baseline Model:
 
-  Comparative Fit Index (CFI)                    0.737
-  Tucker-Lewis Index (TLI)                       0.649
+  Comparative Fit Index (CFI)                    0.927       0.919
+  Tucker-Lewis Index (TLI)                       0.895       0.883
+                                                                  
+  Robust Comparative Fit Index (CFI)                         0.931
+  Robust Tucker-Lewis Index (TLI)                            0.901
 
 Loglikelihood and Information Criteria:
 
-  Loglikelihood user model (H0)              -1270.136
-  Loglikelihood unrestricted model (H1)      -1234.151
-                                                      
-  Akaike (AIC)                                2576.272
-  Bayesian (BIC)                              2612.729
-  Sample-size adjusted Bayesian (SABIC)       2556.155
+  Loglikelihood user model (H0)              -4556.975   -4556.975
+  Loglikelihood unrestricted model (H1)      -4525.806   -4525.806
+                                                                  
+  Akaike (AIC)                                9153.950    9153.950
+  Bayesian (BIC)                              9220.507    9220.507
+  Sample-size adjusted Bayesian (SABIC)       9157.139    9157.139
 
 Root Mean Square Error of Approximation:
 
-  RMSEA                                          0.172
-  90 Percent confidence interval - lower         0.125
-  90 Percent confidence interval - upper         0.221
-  P-value H_0: RMSEA <= 0.050                    0.000
-  P-value H_0: RMSEA >= 0.080                    0.999
+  RMSEA                                          0.085       0.078
+  90 Percent confidence interval - lower         0.059       0.052
+  90 Percent confidence interval - upper         0.112       0.103
+  P-value H_0: RMSEA <= 0.050                    0.016       0.041
+  P-value H_0: RMSEA >= 0.080                    0.650       0.462
+                                                                  
+  Robust RMSEA                                               0.082
+  90 Percent confidence interval - lower                     0.053
+  90 Percent confidence interval - upper                     0.111
+  P-value H_0: Robust RMSEA <= 0.050                         0.036
+  P-value H_0: Robust RMSEA >= 0.080                         0.569
 
 Standardized Root Mean Square Residual:
 
-  SRMR                                           0.116
+  SRMR                                           0.057       0.057
 
 Parameter Estimates:
 
-  Standard errors                             Standard
+  Standard errors                           Robust.sem
   Information                                 Expected
   Information saturated (h1) model          Structured
 
 Latent Variables:
                    Estimate  Std.Err  z-value  P(>|z|)
   job_resources =~                                    
-    opportunities     1.936    0.333    5.813    0.000
-    meaning           1.637    0.216    7.571    0.000
-    influence         2.445    0.588    4.161    0.000
-    social_support    2.627    0.784    3.353    0.001
-    pay_satisfactn    0.889    0.496    1.791    0.073
-    tool_satisfctn    1.321    0.385    3.432    0.001
-    generl_stsfctn    2.149    0.340    6.323    0.000
-    job_security      3.202    0.645    4.966    0.000
-    pub_prssr_rsrc    1.494    0.460    3.249    0.001
+    opportunities     1.322    0.185    7.155    0.000
+    meaning           0.939    0.139    6.774    0.000
+    influence         3.519    0.298   11.827    0.000
+    social_support    2.371    0.365    6.503    0.000
+    pay_satisfactn    1.056    0.299    3.531    0.000
+    tool_satisfctn    1.082    0.233    4.648    0.000
+    generl_stsfctn    1.090    0.240    4.543    0.000
+    job_security      2.203    0.319    6.911    0.000
+    pub_prssr_rsrc    2.912    0.232   12.540    0.000
+
+Covariances:
+                      Estimate  Std.Err  z-value  P(>|z|)
+ .meaning ~~                                             
+   .generl_stsfctn       1.561    0.309    5.046    0.000
+ .pay_satisfaction ~~                                    
+   .tool_satisfctn       3.192    0.736    4.337    0.000
 
 Variances:
                    Estimate  Std.Err  z-value  P(>|z|)
-   .opportunities     3.653    0.813    4.494    0.000
-   .meaning           0.961    0.306    3.139    0.002
-   .influence        14.126    2.842    4.970    0.000
-   .social_support   26.880    5.273    5.098    0.000
-   .pay_satisfactn   11.720    2.236    5.241    0.000
-   .tool_satisfctn    6.445    1.267    5.087    0.000
-   .generl_stsfctn    3.442    0.813    4.236    0.000
-   .job_security     15.543    3.247    4.787    0.000
-   .pub_prssr_rsrc    9.329    1.825    5.111    0.000
+   .opportunities     3.102    0.295   10.532    0.000
+   .meaning           1.674    0.192    8.715    0.000
+   .influence         5.408    0.959    5.639    0.000
+   .social_support   17.301    1.842    9.392    0.000
+   .pay_satisfactn   11.715    0.941   12.443    0.000
+   .tool_satisfctn    8.163    0.705   11.586    0.000
+   .generl_stsfctn    6.253    0.609   10.264    0.000
+   .job_security     16.250    1.785    9.104    0.000
+   .pub_prssr_rsrc    6.241    0.813    7.677    0.000
     job_resources     1.000                           
 

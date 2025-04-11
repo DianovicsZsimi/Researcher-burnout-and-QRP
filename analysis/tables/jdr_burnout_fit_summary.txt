@@ -1,64 +1,60 @@
-lavaan 0.6-19 ended normally after 40 iterations
+lavaan 0.6-19 ended normally after 63 iterations
 
   Estimator                                         ML
   Optimization method                           NLMINB
-  Number of model parameters                        36
+  Number of model parameters                        37
 
-  Number of observations                            56
+  Number of observations                           206
 
 Model Test User Model:
                                               Standard      Scaled
-  Test Statistic                               323.744     365.111
-  Degrees of freedom                               117         117
+  Test Statistic                               232.757     222.572
+  Degrees of freedom                                99          99
   P-value (Chi-square)                           0.000       0.000
-  Scaling correction factor                                  0.887
-    Yuan-Bentler correction (Mplus variant)                       
+  Scaling correction factor                                  1.046
+    Satorra-Bentler correction                                    
 
 Model Test Baseline Model:
 
-  Test statistic                               666.793     698.964
-  Degrees of freedom                               136         136
+  Test statistic                              1351.549    1120.499
+  Degrees of freedom                               120         120
   P-value                                        0.000       0.000
-  Scaling correction factor                                  0.954
+  Scaling correction factor                                  1.206
 
 User Model versus Baseline Model:
 
-  Comparative Fit Index (CFI)                    0.611       0.559
-  Tucker-Lewis Index (TLI)                       0.547       0.488
+  Comparative Fit Index (CFI)                    0.891       0.876
+  Tucker-Lewis Index (TLI)                       0.868       0.850
                                                                   
-  Robust Comparative Fit Index (CFI)                         0.590
-  Robust Tucker-Lewis Index (TLI)                            0.524
+  Robust Comparative Fit Index (CFI)                         0.893
+  Robust Tucker-Lewis Index (TLI)                            0.870
 
 Loglikelihood and Information Criteria:
 
-  Loglikelihood user model (H0)              -2499.069   -2499.069
-  Scaling correction factor                                  1.629
-      for the MLR correction                                      
-  Loglikelihood unrestricted model (H1)      -2337.197   -2337.197
-  Scaling correction factor                                  1.061
-      for the MLR correction                                      
+  Loglikelihood user model (H0)              -8541.890   -8541.890
+  Loglikelihood unrestricted model (H1)      -8425.511   -8425.511
                                                                   
-  Akaike (AIC)                                5070.139    5070.139
-  Bayesian (BIC)                              5143.051    5143.051
-  Sample-size adjusted Bayesian (SABIC)       5029.905    5029.905
+  Akaike (AIC)                               17157.779   17157.779
+  Bayesian (BIC)                             17280.910   17280.910
+  Sample-size adjusted Bayesian (SABIC)      17163.680   17163.680
 
 Root Mean Square Error of Approximation:
 
-  RMSEA                                          0.178       0.195
-  90 Percent confidence interval - lower         0.155       0.171
-  90 Percent confidence interval - upper         0.201       0.219
+  RMSEA                                          0.081       0.078
+  90 Percent confidence interval - lower         0.068       0.065
+  90 Percent confidence interval - upper         0.095       0.091
   P-value H_0: RMSEA <= 0.050                    0.000       0.000
-  P-value H_0: RMSEA >= 0.080                    1.000       1.000
+  P-value H_0: RMSEA >= 0.080                    0.561       0.408
                                                                   
-  Robust RMSEA                                               0.183
-  90 Percent confidence interval - lower                     0.162
-  90 Percent confidence interval - upper                     0.205
+  Robust RMSEA                                               0.080
+  90 Percent confidence interval - lower                     0.066
+  90 Percent confidence interval - upper                     0.094
   P-value H_0: Robust RMSEA <= 0.050                         0.000
-  P-value H_0: Robust RMSEA >= 0.080                         1.000
+  P-value H_0: Robust RMSEA >= 0.080                         0.495
 
 Standardized Root Mean Square Residual:
 
-  SRMR                                           0.164       0.164
+  SRMR                                           0.071       0.071
 
 Parameter Estimates:
 
@@ -69,55 +65,58 @@ Parameter Estimates:
 Latent Variables:
                    Estimate  Std.Err  z-value  P(>|z|)
   job_demands =~                                      
-    workload          1.836    0.419    4.377    0.000
-    pub_prssr_tttd    0.503    0.582    0.863    0.388
-    pb_prssr_strss    1.088    0.407    2.677    0.007
-    role_ambiguity    6.860    0.611   11.229    0.000
-    role_conflict     7.633    0.670   11.385    0.000
-    work_life_blnc    2.277    0.546    4.172    0.000
+    workload          2.198    0.193   11.381    0.000
+    pub_prssr_tttd    1.997    0.299    6.673    0.000
+    pb_prssr_strss    4.521    0.242   18.690    0.000
+    role_ambiguity    4.454    0.502    8.880    0.000
+    role_conflict     3.377    0.484    6.974    0.000
+    work_life_blnc    3.556    0.256   13.914    0.000
   job_resources =~                                    
-    opportunities     1.977    0.462    4.279    0.000
-    meaning           1.599    0.309    5.178    0.000
-    influence         2.642    0.739    3.576    0.000
-    social_support    2.861    0.815    3.512    0.000
-    pay_satisfactn    0.893    0.578    1.545    0.122
-    tool_satisfctn    1.397    0.312    4.482    0.000
-    pub_prssr_rsrc    1.399    1.032    1.356    0.175
-    generl_stsfctn    2.070    0.417    4.965    0.000
-    job_security      3.161    0.736    4.293    0.000
+    opportunities     1.269    0.185    6.851    0.000
+    meaning           0.934    0.138    6.759    0.000
+    influence         3.402    0.295   11.515    0.000
+    social_support    2.516    0.354    7.107    0.000
+    pay_satisfactn    1.058    0.302    3.503    0.000
+    tool_satisfctn    1.161    0.223    5.211    0.000
+    pub_prssr_rsrc    3.007    0.223   13.471    0.000
+    generl_stsfctn    1.088    0.240    4.532    0.000
+    job_security      2.180    0.318    6.858    0.000
 
 Regressions:
                    Estimate  Std.Err  z-value  P(>|z|)
   burnout ~                                           
-    job_demands       1.347    0.421    3.202    0.001
-    job_resources    -1.316    0.858   -1.534    0.125
-  qrp_attitude ~                                      
-    burnout           0.211    0.223    0.947    0.344
+    job_demands       1.296    0.238    5.455    0.000
+    job_resources    -1.108    0.319   -3.469    0.001
 
 Covariances:
-                   Estimate  Std.Err  z-value  P(>|z|)
-  job_demands ~~                                      
-    job_resources    -0.291    0.138   -2.115    0.034
+                      Estimate  Std.Err  z-value  P(>|z|)
+ .role_ambiguity ~~                                      
+   .role_conflict       10.771    3.052    3.530    0.000
+ .meaning ~~                                             
+   .generl_stsfctn       1.568    0.311    5.044    0.000
+ .pay_satisfaction ~~                                    
+   .tool_satisfctn       3.106    0.741    4.193    0.000
+  job_demands ~~                                         
+    job_resources       -0.701    0.052  -13.362    0.000
 
 Variances:
                    Estimate  Std.Err  z-value  P(>|z|)
-   .workload          6.556    1.408    4.658    0.000
-   .pub_prssr_tttd   20.982    8.104    2.589    0.010
-   .pb_prssr_strss   13.913    6.225    2.235    0.025
-   .role_ambiguity    2.100    2.583    0.813    0.416
-   .role_conflict     2.574    3.206    0.803    0.422
-   .work_life_blnc   21.046    2.969    7.090    0.000
-   .opportunities     3.495    0.698    5.007    0.000
-   .meaning           1.084    0.362    2.992    0.003
-   .influence        13.122    3.004    4.368    0.000
-   .social_support   25.595    4.785    5.349    0.000
-   .pay_satisfactn   11.712    1.701    6.884    0.000
-   .tool_satisfctn    6.238    1.051    5.937    0.000
-   .pub_prssr_rsrc    9.604    4.288    2.240    0.025
-   .generl_stsfctn    3.773    0.810    4.657    0.000
-   .job_security     15.801    3.193    4.949    0.000
-   .burnout           7.804    2.633    2.964    0.003
-   .qrp_attitude     20.642    3.845    5.368    0.000
+   .workload          5.455    0.606    9.008    0.000
+   .pub_prssr_tttd   15.937    1.721    9.262    0.000
+   .pb_prssr_strss    5.301    1.042    5.087    0.000
+   .role_ambiguity   47.609    4.310   11.046    0.000
+   .role_conflict    34.855    3.538    9.852    0.000
+   .work_life_blnc   10.813    1.267    8.536    0.000
+   .opportunities     3.238    0.283   11.447    0.000
+   .meaning           1.683    0.198    8.482    0.000
+   .influence         6.218    0.862    7.215    0.000
+   .social_support   16.591    1.757    9.445    0.000
+   .pay_satisfactn   11.711    0.947   12.366    0.000
+   .tool_satisfctn    7.985    0.702   11.381    0.000
+   .pub_prssr_rsrc    5.676    0.726    7.821    0.000
+   .generl_stsfctn    6.257    0.612   10.232    0.000
+   .job_security     16.351    1.792    9.122    0.000
+   .burnout           3.458    0.400    8.638    0.000
     job_demands       1.000                           
     job_resources     1.000                           
 
