@@ -1,5 +1,6 @@
 ---
 title: "raw_to_clean_data_code"
+format: html
 ---
 
 # Researcher burnout and questionable research practice pilot data cleaning
@@ -17,8 +18,8 @@ data_path <- here("data")
 ### Importing data
 
 ```{r echo=FALSE}
-raw_data_01 = read.csv(here::here("data/april_09_decisionlab.csv"))
-raw_data_02 = read.csv(here::here("data/april_09_aczellab.csv"))
+raw_data_01 = read.csv(here::here("data/raw/april_09_decisionlab.csv"))
+raw_data_02 = read.csv(here::here("data/raw/april_09_aczellab.csv"))
 
 if (identical(names(raw_data_01), names(raw_data_02))) {
   cat("The column names are identical.\n")
@@ -114,8 +115,8 @@ raw_data_filtered_valid = raw_data_filtered |>
 # Saving data
 
 ```{r}
-write.csv(raw_data_filtered_valid, here::here("data/raw_to_clean_data.csv"), row.names = FALSE)
-write.csv(raw_data_filtered_codebook, here::here("data/codebook.csv"), row.names = FALSE)
-write.csv(meta_data, here::here("data/meta_data.csv"), row.names = FALSE)
-write.csv(participant_data, here::here("data/participant_checks.csv"), row.names = FALSE)
+write.csv(raw_data_filtered_valid, here::here("data/processed/raw_to_clean_data.csv"), row.names = FALSE)
+write.csv(raw_data_filtered_codebook, here::here("data/processed/codebook.csv"), row.names = FALSE)
+write.csv(meta_data, here::here("data/processed/meta_data.csv"), row.names = FALSE)
+write.csv(participant_data, here::here("data/processed/participant_checks.csv"), row.names = FALSE)
 ```

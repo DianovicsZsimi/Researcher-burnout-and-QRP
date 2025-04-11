@@ -20,7 +20,7 @@ data_path <- here("data")
 #Loading data
 
 ```{r}
-processed = read_csv(here::here("data/processed_data.csv"))
+processed = read_csv(here::here("data/processed/processed_data.csv"))
 ```
 
 #Filtering out invalid data
@@ -60,8 +60,6 @@ for (survey in surveys){
   alpha_result = alpha_function(processed_filtered, survey)
   cronbach_results = rbind(cronbach_results, alpha_result)
 }
-
-write.csv(cronbach_results, here::here("analysis/tables/cronbach_alpha.csv"), row.names = FALSE)
 ```
 
 # Aggregating data
@@ -135,5 +133,6 @@ aggregated_data_final = aggregated_data |>
 #Save data
 
 ```{r}
-write_csv(aggregated_data_final, here::here("data/aggregated_data.csv"))
+write.csv(cronbach_results, here::here("analysis/tables/cronbach_alpha.csv"), row.names = FALSE)
+write_csv(aggregated_data_final, here::here("data/processed/aggregated_data.csv"))
 ```

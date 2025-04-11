@@ -20,7 +20,8 @@ data_path <- here("data")
 ### Load data
 
 ```{r echo = FALSE ouput = FALSE}
-data = read_csv(here::here("data/aggregated_data.csv"))
+data = read_csv(here::here("data/processed/aggregated_data.csv"))
+processed = read_csv(here::here("data/processed/processed_data.csv"))
 ```
 
 # General participant statistics
@@ -83,6 +84,7 @@ phd = data |>
 ```
 
 ## Save each data as csv
+
 ```{r}
 tables <- list(
   n = n,
@@ -128,11 +130,9 @@ for (i in survey){
 
 summary_stats <- data.frame()
 
-# Loop through each variable
 for (s in survey) {
   scores <- data[[s]]
   
-  # Calculate statistics
   mean_val <- mean(scores, na.rm = TRUE)
   sd_val <- sd(scores, na.rm = TRUE)
   se_val <- sd_val / sqrt(sum(!is.na(scores)))
@@ -141,7 +141,6 @@ for (s in survey) {
   }, error = function(e) NA)
   
 
-  # Add to summary table
   summary_stats <- rbind(summary_stats, data.frame(
     survey = s,
     mean = mean_val,
@@ -150,8 +149,6 @@ for (s in survey) {
     shapiro = shapiro
   ))
 }
-
-write.csv(summary_stats, here::here("analysis/tables/summary_stats.csv"), row.names = FALSE)
 ```
 
 ## Deeper look at QRP attitude scale
@@ -159,8 +156,7 @@ write.csv(summary_stats, here::here("analysis/tables/summary_stats.csv"), row.na
 ### As other scales are validated and reliable, we will focus on QRP attitude scale
 
 ```{r}
-processed = read_csv(here::here("data/processed_data.csv"))
-processed = processed |> 
+qrp_data = processed |> 
    filter(finished == T 
          & consent == T 
          & academic_yes_no == T
@@ -169,7 +165,7 @@ processed = processed |>
          & attention == "Passed"
          & lazy_responding == F)
 
-qrp_data = processed |> 
+qrp_data = qrp_data |> 
   select(anonym_id, qrp_attitude_1:qrp_attitude_8) |> 
   left_join(select(data, anonym_id, qrp_attitude), by = "anonym_id")
 
@@ -195,7 +191,7 @@ for (i in qrp_questions){
 
 #Correlation between questions
 
-correlation = qrp_data |> 
+qrp_correlation = qrp_data |> 
   select(qrp_attitude_1:qrp_attitude_8) |> 
   cor(use = "complete.obs")
 
@@ -213,6 +209,8 @@ qrp_distribution = qrp_data |>
   ggplot(aes(x = qrp_attitude)) +
   geom_bar() +
   coord_cartesian(xlim = c(8, 40))
+
+ggsave("figures/qrp/qrp_distribution.png")
 ```
 
 # Checking correlation between variables to see redundancies
@@ -239,3 +237,12 @@ correlations |>
   filter(above_.8 == TRUE) |> 
   select(rowname, variable, correlation)
 ```
+
+# Save files
+
+```{r}
+write.csv(summary_stats, here::here("analysis/tables/summary_stats.csv"), row.names = FALSE)
+write.csv(floor_effects, here::here("analysis/tables/qrp_floor_effects.csv"), row.names = FALSE)
+write.csv(qrp_correlation, here::here("analysis/tables/qrp_correlation.csv"), row.names = FALSE)
+```
+
