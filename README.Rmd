@@ -19,9 +19,9 @@ knitr::opts_chunk$set(
 
 ## Folder structure
 
-The `data/raw` folder contains all the datafiles that are needed to reproduce the results of the project. The datafiles that contains personal information are not shared (e.g. source files with email addresses).
+The `data/raw` folder contains all the datafiles that are needed to reproduce the results of the project.
 
-The `analysis/` folder contains all the analyses files in quarto documents. Within this folder you can find the following files:
+The `analysis/` folder contains all the analyses files in quarto documents.
 
 The `analysis/figures/` folder contains all the figures
 
@@ -71,4 +71,7 @@ installr::install.Rtools()
 
 5.  Run the analysis. Execute the scripts in this order:
 
-I. raw_to_clean_data.qmd II. clean_to_processed_data.qmd III. processed_to_aggregated_data.qmd IV. descriptive_analysis.qmd
+I. raw_to_clean_data.qmd
+II. clean_to_processed_data.qmd 
+III. processed_to_aggregated_data.qmd 
+IV. descriptive_analysis.qmd

@@ -9,12 +9,10 @@
 ## Folder structure
 
 The `data/raw` folder contains all the datafiles that are needed to
-reproduce the results of the project. The datafiles that contains
-personal information are not shared (e.g. source files with email
-addresses).
+reproduce the results of the project.
 
 The `analysis/` folder contains all the analyses files in quarto
-documents. Within this folder you can find the following files:
+documents.
 
 The `analysis/figures/` folder contains all the figures
 
