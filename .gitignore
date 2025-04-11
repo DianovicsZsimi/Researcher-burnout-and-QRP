@@ -4,3 +4,7 @@
 .Ruserdata
 
 /.quarto/
+
+statistical_analysis.qmd
+analysis/ables/*
+!analyis/tables/.gitkeep
