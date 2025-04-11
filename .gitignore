@@ -13,3 +13,10 @@ analysis/figures/demands_cfa_plot.pdf
 analysis/figures/resources_cfa_plot.pdf
 data/raw/april_09_aczellab.csv
 data/raw/april_09_decisionlab.csv
+analysis/tables/jdr_burnout_fit_improved_summary.txt
+analysis/tables/jdr_burnout_fit_summary.txt
+analysis/tables/jdr_burnout_fit_summary_2.txt
+analysis/tables/job_resources_summary.txt
+analysis/tables/job_demands_summary.txt
+analysis/tables/sem_qrp_outcome_fit_summary.txt
+analysis/tables/sem_qrp_predictor_fit_summary.txt
