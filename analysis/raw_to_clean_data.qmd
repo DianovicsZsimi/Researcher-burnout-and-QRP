@@ -18,8 +18,8 @@ data_path <- here("data")
 ### Importing data
 
 ```{r echo=FALSE}
-raw_data_01 = read.csv(here::here("data/raw/april_09_decisionlab.csv"))
-raw_data_02 = read.csv(here::here("data/raw/april_09_aczellab.csv"))
+raw_data_01 = read.csv(here::here("data/raw/april_11_decisionlab.csv"))
+raw_data_02 = read.csv(here::here("data/raw/april_11_aczellab.csv"))
 
 if (identical(names(raw_data_01), names(raw_data_02))) {
   cat("The column names are identical.\n")
