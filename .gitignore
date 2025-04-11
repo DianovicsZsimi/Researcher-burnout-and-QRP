@@ -13,5 +13,3 @@ analysis/figures/sem_plot_2.pdf
 analysis/figures/sem_qrp_outcome.pdf
 analysis/figures/demands_cfa_plot.pdf
 analysis/figures/resources_cfa_plot.pdf
-data/processed/*
-!data/processed/.gitkeep
