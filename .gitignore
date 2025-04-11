@@ -6,8 +6,6 @@
 /.quarto/
 
 analysis/statistical_analysis.qmd
-analysis/ables/*
-!analyis/tables/.gitkeep
 analysis/figures/sem_plot.pdf
 analysis/figures/sem_plot_2.pdf
 analysis/figures/sem_qrp_outcome.pdf
