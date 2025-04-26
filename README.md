@@ -51,17 +51,19 @@ This command will:
 -   Ensure compatibility with the tested environment.
 -   Installing the `renv` environment takes about 10 minutes on an average computer with Windows 11 64bit.
 
-When running on Mac, you may get the following error:
+When trying to restore the environment on Mac, you may get the following error:
 
 `ld: library 'gfortran' not found`
 
 This is because the `gfortran` library is not installed or cannot be found. 
 
-You can first install the `gfortran` library using Homebrew:
+To solve this, you may need to first install the `gfortran` library using Homebrew:
 
 `brew install gcc`
 
-And then, tell R where to find `gfortran` by running the following command in your terminal:
+(you can check this by running `which gcc` or `gcc --version`).
+
+And then, tell R where to find `gfortran` by running the following code in the terminal at the project `root`:
 
 ```bash
 mkdir -p ~/.R
