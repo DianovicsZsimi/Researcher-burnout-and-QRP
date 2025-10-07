@@ -1,10 +1,15 @@
+# R system files
 .Rproj.user
 .Rhistory
 .RData
 .Ruserdata
-
 /.quarto/
 
+# macOS system files
+.DS_Store
+**/.DS_Store
+
+# Data and analysis files
 analysis/statistical_analysis.qmd
 analysis/figures/sem_plot.pdf
 analysis/figures/sem_plot_2.pdf
