@@ -1,0 +1,212 @@
+---
+title: "main_analysis_hypothesis_2"
+author: "Dominik Dianovics"
+format: html
+---
+
+# Researcher burnout and questionable research practice pilot data analysis
+
+## Statistical analysis
+
+### Load libraries
+
+```{r}
+if(!require("tidyverse")) install.packages("tidyverse")
+if(!require("here")) install.packages("here")
+if(!require("lavaan")) install.packages("lavaan")
+if(!require("MVN")) install.packages("MVN")
+if(!require("semPlot")) install.packages("semPlot")
+if(!require("influence.SEM")) install.packages("influence.SEM")
+library(tidyverse)
+library(here)
+library(ggplot2)
+library(lavaan)
+library(MVN)
+library(semPlot)
+library(influence.SEM)
+data_path <- here("data")
+```
+
+### Load data
+
+```{r}
+data = read_csv(here::here("data/processed/aggregated_data.csv"))
+```
+
+### Clean data for graphs and analysis
+
+```{r}
+data = data |> 
+  rename(
+    WLD = workload,
+    PPA = pub_pressure_attitude,
+    PPR = pub_pressure_resource,
+    PPS = pub_pressure_stress,
+    AMB = role_ambiguity,
+    CON = role_conflict,
+    WLB = work_life_balance,
+    OPP = opportunities,
+    MNG = meaning,
+    INF = influence,
+    SOC = social_support,
+    PAY = pay_satisfaction,
+    TOL = tool_satisfaction,
+    GNL = general_satisfaction,
+    SEC = job_security
+  )
+```
+
+# Exploration of different career stages
+
+### Career stage differences
+
+```{r}
+career_stage_data = data |> 
+  filter(title != "This does not apply to me") |> 
+  mutate(title = factor(title, levels = c("PhD student", "Post Doc", "Assistant Professor", "Associate Professor", "Full Professor")))
+
+# Career stage as grouping variable
+
+kruskal.test(burnout ~ title, data = career_stage_data)
+# Not significant at p < 0.05
+
+ggplot(career_stage_data, aes(x = title, y = burnout)) +
+  geom_boxplot(width = 0.5, outlier.shape = NA) +
+  labs(title = "Figure x", y = "Burnout", subtitle = "Burnout by Career Stage") +
+  theme_classic(base_family = "serif") +
+  theme(
+    axis.title.x = element_blank(),
+    plot.title = element_text(size = 12, face = "bold"),
+    plot.subtitle = element_text(size = 12, face = "italic"),
+    axis.text = element_text(size = 12)
+  ) +
+  coord_cartesian(ylim = c(0, 16))
+
+ggsave(here::here("analysis/figures/burnout_career_stage.png"), width = 8, height = 6)
+
+mean_burnout = career_stage_data |> 
+  group_by(title) |> 
+  summarise(mean_burnout = mean(burnout, na.rm = TRUE))
+
+kruskal.test(workload ~ title, data = career_stage_data)
+# Not significant at p < 0.05
+
+kruskal.test(job_security ~ title, data = career_stage_data)
+# Significant at p < 0.001
+
+kruskal.test(pub_pressure_stress ~ title, data = career_stage_data)
+# Significant at p < 0.05
+
+kruskal.test(pub_pressure_attitude ~ title, data = career_stage_data)
+# Not significant at p < 0.05
+
+kruskal.test(pub_pressure_resource ~ title, data = career_stage_data)
+# Significant at p < 0.01
+
+kruskal.test(influence ~ title, data = career_stage_data)
+# Significant at p < 0.01
+
+kruskal.test(meaning ~ title, data = career_stage_data)
+# Significant at p < 0.05
+
+kruskal.test(social_support ~ title, data = career_stage_data)
+# Significant at p < 0.05
+
+kruskal.test(opportunities ~ title, data = career_stage_data)
+# Not significant at p < 0.05
+
+kruskal.test(role_ambiguity ~ title, data = career_stage_data)
+# Not significant at p < 0.05
+
+kruskal.test(role_conflict ~ title, data = career_stage_data)
+# Significant at p < 0.05
+
+kruskal.test(work_life_balance ~ title, data = career_stage_data)
+# Not significant at p < 0.05
+
+kruskal.test(pay_satisfaction ~ title, data = career_stage_data)
+# Significant at p < 0.001
+
+kruskal.test(tool_satisfaction ~ title, data = career_stage_data)
+# Not significant at p < 0.05
+
+kruskal.test(general_satisfaction ~ title, data = career_stage_data)
+# Not significant at p < 0.05
+
+ggplot(career_stage_data, aes(x = title, y = pay_satisfaction)) +
+  geom_boxplot(width = 0.5, outlier.shape = NA) +
+  labs(title = "Figure x", y = "Pay satisfaction", subtitle = "Pay satisfaction by Career Stage") +
+  theme_classic(base_family = "serif") +
+  theme(
+    axis.title.x = element_blank(),
+    plot.title = element_text(size = 12, face = "bold"),
+    plot.subtitle = element_text(size = 12, face = "italic"),
+    axis.text = element_text(size = 12)
+  ) +
+  coord_cartesian(ylim = c(0, 14))
+
+ggsave(here::here("analysis/figures/pay_satisfaction_career_stage.png"), width = 8, height = 6)
+
+ggplot(career_stage_data, aes(x = title, y = job_security)) +
+  geom_boxplot(width = 0.5, outlier.shape = NA) +
+  labs(title = "Figure 3", y = "Job security", subtitle = "Job security by Career Stage") +
+  theme_classic(base_family = "serif") +
+  theme(
+    axis.title.x = element_blank(),
+    plot.title = element_text(size = 12, face = "bold"),
+    plot.subtitle = element_text(size = 12, face = "italic"),
+    axis.text = element_text(size = 12)
+  ) +
+  coord_cartesian(ylim = c(0, 20))
+ 
+ggsave(here::here("analysis/figures/job_security_career_stage.png"), width = 8, height = 6)
+
+ggplot(career_stage_data, aes(x = title, y = influence)) +
+  geom_boxplot(width = 0.5, outlier.shape = NA) +
+  labs(title = "Figure x", y = "Influence", subtitle = "Influence by Career Stage") +
+  theme_classic(base_family = "serif") +
+  theme(
+    axis.title.x = element_blank(),
+    plot.title = element_text(size = 12, face = "bold"),
+    plot.subtitle = element_text(size = 12, face = "italic"),
+    axis.text = element_text(size = 12)
+  ) +
+  coord_cartesian(ylim = c(0, 36))
+
+ggsave(here::here("analysis/figures/influence_career_stage.png"), width = 8, height = 6)
+
+
+# Career stage as moderator
+
+moderator = lm(burnout ~ title * pay_satisfaction + title * influence + title * job_security, data = career_stage_data)
+summary(moderator)
+
+library(interactions)
+
+interact_plot(moderator, pred = influence, modx = title, 
+              x.label = "influence", y.label = "Burnout", interval = F, 
+              main.title = "Moderation of influence on Burnout by Career Stage",
+              legend.main = "Career Stage")
+
+
+ggplot(career_stage_data, aes(x = title, y = burnout)) +
+  geom_boxplot(width = 0.1, outlier.shape = NA) +
+  labs(title = "Burnout by Career Stage", y = "Burnout", x = "Career Stage")
+
+library(car)
+
+big_model = lm(burnout ~ job_security + workload + work_life_balance + influence + meaning + social_support + pub_pressure_attitude + pub_pressure_stress + pub_pressure_resource + opportunities + role_ambiguity + role_conflict + pay_satisfaction + tool_satisfaction + general_satisfaction, data = career_stage_data)
+
+vif(big_model)
+summary(big_model)
+```
+
+# Exploration of questionable research practices
+
+### distirubution for qrp
+
+```{r}
+qrp_distribution = data |>    
+  ggplot(aes(x = qrp_attitude)) +   
+  geom_bar()
+```

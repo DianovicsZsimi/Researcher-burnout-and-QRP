@@ -23,7 +23,7 @@ data_path <- here("data")
 processed = read_csv(here::here("data/processed/processed_data.csv"))
 ```
 
-#Filtering out invalid data
+### Filtering out invalid data
 
 ```{r}
 processed_filtered = processed |> 
@@ -33,12 +33,39 @@ processed_filtered = processed |>
          & research_yes_no == T
          & last_published != "More than 10 years ago or Never"
          & attention == "Passed"
-         & lazy_responding == F
-         & complete.cases(select(processed, -phd_dissertation))
   )
 ```
 
+# Saving item-level data
+
+```{r}
+write_csv(processed_filtered, here::here("data/processed/item_level_processed.csv"))
+```
+
+# Checking missingness
+
+```{r}
+missingness_summary = processed_filtered |>
+  select(starts_with(c("bat", "ppqr", "copsoq", "wlbm", "jis", "qrp", "role", "pay", "tool", "general", "open_practice"))) |>
+  summarise(across(everything(), ~ mean(is.na(.)) * 100)) |>
+  pivot_longer(everything(), names_to = "item", values_to = "missingness_percentage")
+
+library(mice)
+library(naniar)
+
+processed_filtered |>
+  select(starts_with(c("bat", "ppqr_stress", "ppqr_attitude", "ppqr_resources", "copsoq_workload", "copsoq_soc_sup", "copsoq_oppor", "wlbm", "jis", "copsoq_infl", "copsoq_meaning", "role_ambiguity", "role_conflict",
+            "pay_satisfaction", "tool_satisfaction", "general_satisfaction"))) |>
+  naniar::mcar_test()
+
+processed_filtered |>
+  select(starts_with(c("bat", "ppqr_stress", "ppqr_attitude", "ppqr_resources", "copsoq_workload", "copsoq_soc_sup", "copsoq_oppor", "wlbm", "jis", "copsoq_infl", "copsoq_meaning", "role_ambiguity", "role_conflict",
+            "pay_satisfaction", "tool_satisfaction", "general_satisfaction"))) |>
+  naniar::gg_miss_var()
+```
+
 # Checking cronbach alpha
+
 ```{r}
 surveys = c("bat", "ppqr_stress", "ppqr_attitude", "ppqr_resources", "copsoq_workload", "copsoq_soc_sup", "copsoq_oppor", "wlbm", "jis",
             "qrp_attitude", "copsoq_infl", "copsoq_meaning", "role_ambiguity", "role_conflict",
@@ -63,15 +90,33 @@ for (survey in surveys){
 ```
 
 # Aggregating data
+
 ```{r}
 surveys = c("bat", "ppqr_stress", "ppqr_attitude", "ppqr_resources", "copsoq_workload", "copsoq_soc_sup", "copsoq_oppor", "wlbm", "jis",
             "qrp_attitude", "copsoq_infl", "copsoq_meaning", "role_ambiguity", "role_conflict",
             "pay_satisfaction", "tool_satisfaction", "general_satisfaction", "open_practice")
 
-aggregate_function = function(data, survey){
+aggregate_function <- function(data, survey) {
   data |>
     group_by(anonym_id) |>
-    summarize("{survey}_total" := rowSums(across(starts_with(survey)), na.rm = TRUE))
+    summarize(
+      "{survey}_total" := {
+        vars <- across(starts_with(survey))
+        n_items <- ncol(vars)
+        n_nonmissing <- rowSums(!is.na(vars))
+
+        # Only compute if ≥70% of the items are answered
+        complete_enough <- n_nonmissing / n_items >= 0.70
+
+        # Compute row means with NA removal
+        out <- rowMeans(vars, na.rm = TRUE)
+
+        # If not complete enough → return NA
+        out[!complete_enough] <- NA_real_
+
+        out
+      }
+    )
 }
 
 for (survey in surveys){
@@ -80,22 +125,6 @@ for (survey in surveys){
 
 aggregated_datasets <- mget(ls(pattern = "_aggregated$"))
 aggregated_data <- reduce(aggregated_datasets, left_join, by = "anonym_id")
-```
-
-#Checking for error while aggregating
-
-```{r}
-bat_aggregated_manual = processed_filtered |>
-  group_by(anonym_id) |>
-  summarize(bat_total = rowSums(across(starts_with("bat")), na.rm = TRUE))
-
-role_ambiguity_aggregated_manual = processed_filtered |>
-  group_by(anonym_id) |>
-  summarize(role_ambiguity_total = rowSums(across(starts_with("role_ambiguity")), na.rm = TRUE))
-
-#Compare
-all(bat_aggregated$bat_total == bat_aggregated_manual$bat_total)
-all(role_ambiguity_aggregated$role_ambiguity_total == role_ambiguity_aggregated_manual$role_ambiguity_total)
 ```
 
 #Joining aggregate data with descriptives
